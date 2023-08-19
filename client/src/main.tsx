@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './routes/App.tsx'
 import './index.css'
-import CreateProject from './routes/CreateProject.tsx'
+import EditProject from './routes/EditProject.tsx'
 
 import {
   createBrowserRouter,
@@ -20,8 +20,8 @@ const router = createBrowserRouter([
     element: <ViewProjects/>
   },
   {
-    path: "/projects/create",
-    element: <CreateProject/>
+    path: "/projects/edit",
+    element: <EditProject/>
   }
 ]);
 

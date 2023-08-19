@@ -19,7 +19,7 @@ export async function getProjects(): Promise<TProject[]>{
 }
 
 export async function createProject(title:string, date:string, description:string){
-    const response = await fetch(`${API_URL}/projects/create`, {
+    const response = await fetch(`${API_URL}/projects/edit`, {
         method: "POST",
         body: JSON.stringify({
             title,
@@ -31,4 +31,10 @@ export async function createProject(title:string, date:string, description:strin
         },
     })
     return response.json()
+}
+
+export async function deleteProject(projectId: string){
+    await fetch(`${API_URL}/projects/edit/${projectId}`, {
+        method: "DELETE",
+    })
 }

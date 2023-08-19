@@ -19,3 +19,9 @@ export async function getProjects(req: Request, res:Response){
     const projects = await Project.find()
     res.json(projects)
 }
+
+export async function deleteProject(req:Request, res:Response){
+    const projectId = req.params.projectId
+    const project = await Project.findByIdAndDelete(projectId)
+    res.json(project)
+}
