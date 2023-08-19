@@ -14,3 +14,8 @@ export async function createProject(req: Request, res: Response){
     res.json(createdProj)
 
 }
+
+export async function getProjects(req: Request, res:Response){
+    const projects = await Project.find()
+    res.json(projects)
+}

@@ -6,7 +6,11 @@ function App() {
 
   return (
     <>
-      <Link to={`projects/create`}>Create Project</Link>
+      <ul>
+        <li><Link to={`projects`}>View all Projects</Link></li>
+        <li><Link to={`projects/create`}>Create Project</Link></li>
+      </ul>
+      
     </>
   )
 }

@@ -8,11 +8,16 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import ViewProjects from './routes/ViewProjects.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+  },
+  {
+    path: "/projects",
+    element: <ViewProjects/>
   },
   {
     path: "/projects/create",
