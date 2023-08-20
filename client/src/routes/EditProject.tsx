@@ -38,6 +38,8 @@ function CreateProject() {
 
   return (
     <>
+      <h1>Edit Projects</h1>
+      <h2>Create a Project</h2>
       <div className='create'>
         <form onSubmit={handleCreateProject} className='fields'>
           <ul>
@@ -82,6 +84,7 @@ function CreateProject() {
           <button>Submit</button>
         </form>
       </div>
+      <h2>Delete a Project</h2>
       <ul className='delete'>
         {projects.map((project) => (
           <li key={project._id}>

@@ -17,6 +17,7 @@ function ViewProjects(){
 
     return (
         <>
+        <h1>Projects</h1>
         <ul className='projects'>
             {projects.map((project) => (
                 <li key={project._id}>

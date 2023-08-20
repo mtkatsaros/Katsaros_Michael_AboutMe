@@ -1,0 +1,19 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.projects{
+    display:grid;
+    width: 700px;
+    grid-gap: 10px;
+    color: white;
+}
+.projects li{
+    border: 1px solid snow;
+}
+
+.proj li{
+    border: 1px dotted snow;
+}
