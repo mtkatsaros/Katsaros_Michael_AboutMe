@@ -1,19 +1,30 @@
+
 ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.projects{
-    display:grid;
-    width: 700px;
-    grid-gap: 10px;
-    color: white;
-}
-.projects li{
-    border: 1px solid snow;
+p{
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
-.proj li{
-    border: 1px dotted snow;
+h3{
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: normal;
+}
+
+
+.projects{
+    display:grid;
+    width: 500px;
+    grid-gap: 10px;
+    
+}
+.projects li{
+    background-color: whitesmoke;
 }

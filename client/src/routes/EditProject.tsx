@@ -56,9 +56,9 @@ function CreateProject() {
             </li>
 
             <li>
-
               <label htmlFor='project-date'>Date of completion </label>
               <input 
+              type='date'
               id='project-date'
               value={date}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -68,13 +68,12 @@ function CreateProject() {
 
             </li>
               
-            <li>
-
+            <li className='description'>
               <label htmlFor='project-description'>Description </label>
-              <input
+              <textarea
               id='project-description'
               value={description}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>{
                 setDescription(e.target.value)
               }}
               />

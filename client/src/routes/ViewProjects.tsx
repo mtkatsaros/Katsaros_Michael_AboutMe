@@ -23,7 +23,7 @@ function ViewProjects(){
                 <li key={project._id}>
                     <ul className='proj'>
                         <li><h2>{project.title}</h2></li>
-                        <li><label>Date Created: {project.date}</label></li>
+                        <li><h3>Date Created: {project.date}</h3></li>
                         <li><p>Description:<br/>{project.description}</p></li>
                     </ul>
                 </li>
