@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './EditProject.css'
-import { TProject, createProject, deleteProject, getProjects } from '../api/Projects'
+import { TProject, createProject, getProjects, deleteProject } from '../../api/Projects'
 
 function CreateProject() {
   const [projects, setProjects] = useState<TProject[]>([])

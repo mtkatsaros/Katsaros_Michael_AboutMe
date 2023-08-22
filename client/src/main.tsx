@@ -2,13 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './routes/App.tsx'
 import './index.css'
-import EditProject from './routes/EditProject.tsx'
-
+import EditProject from './routes/projects/EditProject.tsx'
+import ViewProjects from './routes/projects/ViewProjects.tsx'
+import WriteReview from './routes/reviews/WriteReview.tsx'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import ViewProjects from './routes/ViewProjects.tsx'
+
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/projects/edit",
     element: <EditProject/>
+  },
+  {
+    path: "/reviews/write",
+    element: <WriteReview/>
   }
 ]);
 

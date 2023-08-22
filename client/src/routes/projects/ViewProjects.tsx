@@ -1,5 +1,5 @@
 import './ViewProjects.css'
-import { TProject, getProjects } from '../api/Projects'
+import { TProject, getProjects } from '../../api/Projects'
 
 import { useEffect, useState } from 'react'
 

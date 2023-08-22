@@ -7,6 +7,7 @@ const app = express()
 const port = 50000
 import cors from 'cors'
 import projApp from './routes/projectRoutes'
+import reviewApp from './routes/reviewRoutes'
 
 
 app.use(cors({
@@ -14,6 +15,7 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(projApp)
+app.use(reviewApp)
 
 app.get('/', (req:Request, res:Response)=>{
     res.send('Hello there!')
