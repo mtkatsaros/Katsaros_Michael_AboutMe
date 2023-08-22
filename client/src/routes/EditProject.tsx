@@ -65,7 +65,6 @@ function CreateProject() {
                 setDate(e.target.value)
               }}
               />
-
             </li>
               
             <li className='description'>

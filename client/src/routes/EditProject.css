@@ -1,3 +1,9 @@
 .description{
-    
+    vertical-align: top;
+    margin: 0px;
+}
+
+.description label{
+    vertical-align: top;
+    margin: 0px;
 }
