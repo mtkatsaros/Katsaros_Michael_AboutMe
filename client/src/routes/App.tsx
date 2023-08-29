@@ -10,6 +10,8 @@ function App() {
         <li><Link to={`projects`}>View all Projects</Link></li>
         <li><Link to={`projects/edit`}>Edit Project</Link></li>
         <li><Link to={`reviews/write`}>Write Review</Link></li>
+        <li><Link to={`login`}>Log in</Link></li>
+        <li><Link to={`create`}>Create Account</Link></li>
       </ul>
       
     </>

@@ -31,8 +31,8 @@ function WriteReview (){
         <form onSubmit={handleCreateReview} className='fields'>
           <ul>
             <li>
-              <label htmlFor='review-user'>Username </label>
               <input 
+              placeholder='Username'
               id='review-user'
               value={user}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,8 +43,8 @@ function WriteReview (){
             </li>
 
             <li>
-              <label htmlFor='review-title'>Title </label>
               <input
+              placeholder='Title'
               id='review-title'
               value={title}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -54,8 +54,9 @@ function WriteReview (){
             </li>
               
             <li className='description'>
-              <label htmlFor='review-description'>Description </label>
+              
               <textarea
+              placeholder='Description'
               id='review-description'
               value={description}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>{
