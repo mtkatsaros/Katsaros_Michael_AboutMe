@@ -1,20 +1,20 @@
 import { useState } from "react"
 import { createAccount } from "../../api/Authenticate"
+import { useNavigate } from "react-router-dom"
 
 function CreateAccount(){
     const [user, setUser] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
+    const navigate = useNavigate()
 
     async function handleCreate(e:React.FormEvent){
         e.preventDefault()
         if(password === passwordConfirm){
             await createAccount(user, email, password)
-            setUser('')
-            setEmail('')
-        }
-        
+            navigate('/create/success')
+        } 
         setPassword('')
         setPasswordConfirm('')
     }
