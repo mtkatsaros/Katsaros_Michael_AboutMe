@@ -1,5 +1,5 @@
 import { useState } from "react"
-//import { createAccount } from "../../api/Authenticate"
+import { createAccount } from "../../api/Authenticate"
 
 function CreateAccount(){
     const [user, setUser] = useState('')
@@ -10,7 +10,7 @@ function CreateAccount(){
     async function handleCreate(e:React.FormEvent){
         e.preventDefault()
         if(password === passwordConfirm){
-            //await createAccount(user, email, password)
+            await createAccount(user, email, password)
             setUser('')
             setEmail('')
         }

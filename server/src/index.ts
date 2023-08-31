@@ -8,6 +8,7 @@ const port = 50000
 import cors from 'cors'
 import projApp from './routes/projectRoutes'
 import reviewApp from './routes/reviewRoutes'
+import authApp from './routes/authRoutes'
 
 
 app.use(cors({
@@ -16,12 +17,13 @@ app.use(cors({
 app.use(express.json())
 app.use(projApp)
 app.use(reviewApp)
+app.use(authApp)
 
 app.get('/', (req:Request, res:Response)=>{
     res.send('Hello there!')
 })
 
-mongoose.connect(process.env.MONGO_URL!).then(()=>{
-    console.log(`listening on port ${port}`)
+mongoose.connect(`${process.env.MONGO_URL}`).then(()=>{
+    console.log(`listening on port ${port}/test`)
     app.listen(port)
 })
