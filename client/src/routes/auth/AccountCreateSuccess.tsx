@@ -10,6 +10,8 @@ function AccountCreateSuccess(){
     return (
         <>
         <h1>Success!</h1>
+        <label>Account creation successful. You can now login to your new account.</label>
+        <br/><br/>
         <button onClick={handleNavigate}>Return to Login</button>
         </>
     )
