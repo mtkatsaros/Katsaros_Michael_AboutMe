@@ -4,7 +4,6 @@ import { TReview, getReviews, createReview } from '../../api/Reviews.ts'
 
 function WriteReview (){
     const [reviews, setReviews] = useState<TReview[]>([])
-    const [user, setUser] = useState("")
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
@@ -18,9 +17,9 @@ function WriteReview (){
 
     async function handleCreateReview(e: React.FormEvent){
         e.preventDefault()
-        const review = await createReview(user, title, description)
+        //TODO: add the current user to the review
+        const review = await createReview("user123", title, description)
         setReviews([...reviews, review])
-        setUser('')
         setTitle('')
         setDescription('')
     }
@@ -30,21 +29,10 @@ function WriteReview (){
       <div className='create'>
         <form onSubmit={handleCreateReview} className='fields'>
           <ul>
+            
             <li>
-              <input 
-              placeholder='Username'
-              id='review-user'
-              value={user}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setUser(e.target.value)
-              }} 
-              />
-              
-            </li>
-
-            <li>
+                <label>Title</label>
               <input
-              placeholder='Title'
               id='review-title'
               value={title}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -54,9 +42,8 @@ function WriteReview (){
             </li>
               
             <li className='description'>
-              
+                <label>Description</label>
               <textarea
-              placeholder='Description'
               id='review-description'
               value={description}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>{

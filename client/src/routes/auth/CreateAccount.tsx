@@ -25,8 +25,8 @@ function CreateAccount(){
         <form onSubmit={handleCreate}>
             <ul>
                 <li>
+                    <label>Username</label>
                    <input 
-                    placeholder="username"
                     id="account-user"
                     value={user}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -35,8 +35,9 @@ function CreateAccount(){
                     </input> 
                 </li>
                 <li>
+                    <label>Email</label>
                    <input 
-                    placeholder="email"
+                    type="email"
                     id="account-email"
                     value={email}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -45,8 +46,9 @@ function CreateAccount(){
                     </input> 
                 </li>
                 <li>
+                    <label>Password</label>
                    <input 
-                    placeholder="password"
+                    type="password"
                     id="account-password"
                     value={password}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -55,8 +57,9 @@ function CreateAccount(){
                     </input> 
                 </li>
                 <li>
+                    <label>Confirm Password</label>
                    <input 
-                    placeholder="confirm password"
+                    type="password"
                     id="account-password_confirm"
                     value={passwordConfirm}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{

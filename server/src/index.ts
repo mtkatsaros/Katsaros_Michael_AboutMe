@@ -24,6 +24,6 @@ app.get('/', (req:Request, res:Response)=>{
 })
 
 mongoose.connect(`${process.env.MONGO_URL}`).then(()=>{
-    console.log(`listening on port ${port}/test`)
+    console.log(`listening on port ${port}`)
     app.listen(port)
 })
