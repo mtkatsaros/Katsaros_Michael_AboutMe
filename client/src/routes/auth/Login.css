@@ -1,3 +1,7 @@
+.create{
+    display: block;
+    text-align: right;
+}
 .create:hover{
     color: rgb(95, 134, 161);
 }
