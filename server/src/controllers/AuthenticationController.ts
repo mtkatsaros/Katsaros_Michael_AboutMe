@@ -1,6 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config()
 import { Request, Response } from "express";
-import mongoose from "mongoose";
 import Account from "../models/Account";
+import jwt, {Secret} from 'jsonwebtoken'
+
+
 
 export async function createAccount(req:Request, res:Response){
     const newAccount = new Account({
@@ -18,7 +22,12 @@ export async function login(req:Request, res:Response){
     await Account.findOne({email: email}).then((user) =>{
         if(user){
             if(user.password === password){
-                res.json("success")
+                jwt.sign({email: user.email}, process.env.JWT_SECRET as Secret, {}, (err, token) =>{
+                    if(err){
+                        throw err
+                    }
+                    res.cookie('token', token).json(user)
+                })
             }
             //if this statement fails it's a password error
             else{

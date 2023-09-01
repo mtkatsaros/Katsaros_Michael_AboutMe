@@ -25,10 +25,19 @@ function Login(){
     async function handleLogin(e:React.FormEvent){
         e.preventDefault()
         const result = await login(email, password)
-        if(result === 'success'){
+        if(result === 'email'){
+            alert("Invalid username or password")
+            setEmail('')
+            setPassword('') 
+        }
+        else if (result === 'password'){
+            alert("Invalid password")
+            setPassword('')
+        }
+        else{
+            //TODO: add the current user
             navigate('/')
         }
-        //TODO: handle errors
     }
     return (<>
         <h1>Log in</h1>
