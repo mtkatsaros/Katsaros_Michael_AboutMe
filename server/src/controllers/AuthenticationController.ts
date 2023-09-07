@@ -1,14 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config()
 import { Request, Response } from "express";
-import Account from "../models/Account";
+import User from "../models/User";
 import jwt, {Secret} from 'jsonwebtoken'
 
 
 
 export async function createAccount(req:Request, res:Response){
-    const newAccount = new Account({
-        user: req.body.user,
+    const newAccount = new User({
+        username: req.body.user,
         email: req.body.email,
         password: req.body.password,
     })
@@ -19,7 +19,7 @@ export async function createAccount(req:Request, res:Response){
 
 export async function login(req:Request, res:Response){
     const {email, password} = req.body
-    await Account.findOne({email: email}).then((user) =>{
+    await User.findOne({email: email}).then((user) =>{
         if(user){
             if(user.password === password){
                 jwt.sign({email: user.email}, process.env.JWT_SECRET as Secret, {}, (err, token) =>{

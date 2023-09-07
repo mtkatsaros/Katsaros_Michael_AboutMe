@@ -1,16 +1,16 @@
 import { API_URL } from "./config";
 
-export type TAccount = {
-    user: string;
+export type TUser = {
+    username: string;
     email: string;
     password: string;
 }
 
-export async function createAccount(user:string, email:string, password:string){
+export async function createAccount(username:string, email:string, password:string){
     const response = await fetch(`${API_URL}/create`, {
         method: "POST", 
         body: JSON.stringify({
-            user,
+            username,
             email,
             password,
         }),

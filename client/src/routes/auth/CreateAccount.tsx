@@ -3,7 +3,7 @@ import { createAccount } from "../../api/Authenticate"
 import { useNavigate } from "react-router-dom"
 
 function CreateAccount(){
-    const [user, setUser] = useState('')
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -12,7 +12,7 @@ function CreateAccount(){
     async function handleCreate(e:React.FormEvent){
         e.preventDefault()
         if(password === passwordConfirm){
-            await createAccount(user, email, password)
+            await createAccount(username, email, password)
             navigate('/create/success')
         } 
         setPassword('')
@@ -28,9 +28,9 @@ function CreateAccount(){
                     <label>Username</label>
                    <input 
                     id="account-user"
-                    value={user}
+                    value={username}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>{
-                    setUser(e.target.value)
+                    setUsername(e.target.value)
                     }}>
                     </input> 
                 </li>
