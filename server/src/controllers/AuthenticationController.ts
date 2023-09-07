@@ -8,7 +8,7 @@ import jwt, {Secret} from 'jsonwebtoken'
 
 export async function createAccount(req:Request, res:Response){
     const newAccount = new User({
-        username: req.body.user,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
     })
