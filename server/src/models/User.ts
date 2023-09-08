@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({
     username: String, 
     //select false means that data retrieval must be explicit
-    email: {type: String, select: false},
-    password: {String, select: false},
+    email: {type: String, required: true, unique: true, select: false},
+    password: {type: String, required: true, select: false},
 })
 
 const User = mongoose.model('User', UserSchema)

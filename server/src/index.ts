@@ -10,12 +10,28 @@ import cors from 'cors'
 import projApp from './routes/projectRoutes'
 import reviewApp from './routes/reviewRoutes'
 import authApp from './routes/authRoutes'
+import session from 'express-session'
+import env from './utils/validateEnv'
+import MongoStore from 'connect-mongo'
 
 
 app.use(cors({
     origin: "*",
 }))
 app.use(express.json())
+
+app.use(session({
+    secret: env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60 * 60 * 1000,
+    },
+    rolling: true,
+    store: MongoStore.create({
+        mongoUrl: env.MONGO_URL
+    }),
+}))
 //app.use(cookieParser())
 app.use(express.urlencoded({extended: false}))
 
