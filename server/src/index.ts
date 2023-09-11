@@ -16,7 +16,7 @@ import MongoStore from 'connect-mongo'
 
 
 app.use(cors({
-    origin: "*",
+    origin: '*',
 }))
 app.use(express.json())
 
@@ -26,13 +26,13 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 60 * 60 * 1000,
+        httpOnly: false,
     },
     rolling: true,
     store: MongoStore.create({
         mongoUrl: env.MONGO_URL
     }),
 }))
-//app.use(cookieParser())
 app.use(express.urlencoded({extended: false}))
 
 app.use(projApp)

@@ -9,6 +9,7 @@ export async function createProject(req: Request, res: Response){
         title: req.body.title,
         date: req.body.date,
         description: req.body.description,
+        github: req.body.github,
     });
     const createdProj = await newProj.save()
     res.json(createdProj)
