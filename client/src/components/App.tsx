@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import './App.css'
-import { Project } from '../models/project'
+import { Project as ProjectModel } from '../models/project'
+import Project from './Project'
+import { Container, Row } from 'react-bootstrap'
 
 function App() {
-  const [projects, setProjects] = useState<Project[]>([])
+  const [projects, setProjects] = useState<ProjectModel[]>([])
 
   useEffect(() => {
     async function loadProjects(){
@@ -20,9 +21,15 @@ function App() {
   }, [])
 
   return (
-    
-    <>
-      {JSON.stringify(projects)}
+    <>  
+      <Container className='Projects'>
+        <h1 style={{color: 'lightblue'}}>Projects</h1>
+        <Row className='g-2'>
+          {projects.map(project => (
+          <Project project={project} key={project._id}/>
+          ))}
+        </Row>
+      </Container>
     </>
   )
 }
