@@ -19,6 +19,14 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
         github,
     } = project
 
+    const yearAndMonth = date.split('-', 2)
+    const year = yearAndMonth[0]
+    const monthInt = parseInt(yearAndMonth[1]) 
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December']
+    const monthString = months[monthInt-1]
+    
+
     return (<>
     <Card 
         className={`${styles.projectCard} ${className}`}
@@ -40,7 +48,7 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
             
             <Card.Title>
                 <div style={{float: 'left'}}>{title}</div>
-                <div style={{textAlign: 'right'}}>Created {date}</div>
+                <div style={{textAlign: 'right'}}>Created {monthString} {year}</div>
                 
             </Card.Title>
             <Card.Text className={styles.cardText}>Description: <br/>{description}</Card.Text>
