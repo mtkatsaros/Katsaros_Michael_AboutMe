@@ -28,8 +28,9 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
                 <div style={{textAlign: 'right'}}>
                     <MdDelete 
                     className={'ms-auto'}
-                    onClick={() => {
+                    onClick={(e:React.MouseEvent<HTMLDivElement>) => {
                         onDeleteProjectClicked(project)
+                        e.stopPropagation()
                     }}
                     />  
                 </div>
