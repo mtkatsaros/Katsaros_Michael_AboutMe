@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { Project as ProjectModel } from "../models/project";
 import Project from "./Project";
-import { Container, Row, Button } from "react-bootstrap";
+import { Container, Row, Button, Spinner } from "react-bootstrap";
 import stylesUtils from '../styles/utils.module.css'
 import * as ProjectsApi from "../network/project_api";
 import AddEditProjectDialog from "./AddEditProjectDialog";
 
 const ProjectsPageAdminView = () => {
     const [projects, setProjects] = useState<ProjectModel[]>([]);
+    const [projectsLoading, setProjectsLoading] = useState(true)
+    const [showProjectsLoadingError, setShowProjectsLoadingError] = useState(false)
+
 
     const [showAddProjectDialog, setShowAddProjectDialog] = useState(false)
     const [projectToEdit, setProjectToEdit] = useState<ProjectModel|null>(null)
@@ -16,23 +19,45 @@ const ProjectsPageAdminView = () => {
     useEffect(() => {
     async function loadProjects() {
         try {
-        const fetchedProjects = await ProjectsApi.fetchProjects()
-        setProjects(fetchedProjects);
+            setShowProjectsLoadingError(false)
+            setProjectsLoading(true)
+            const fetchedProjects = await ProjectsApi.fetchProjects()
+            setProjects(fetchedProjects);
         } catch (error) {
-        console.error(error);
-        alert(error);
+            console.error(error);
+            setShowProjectsLoadingError(true)
+        }finally{
+            setProjectsLoading(false)
         }
     }
     loadProjects();
     }, []);
 
+    const projectsGrid = 
+        <Row className="g-2">
+            {projects.map((project) => (
+                <Project 
+                    project={project} 
+                    key={project._id} 
+                    onProjectClicked={setProjectToEdit}
+                    onDeleteProjectClicked={deleteProject}
+                    isAdmin={true}
+                />
+            ))}
+        </Row>
+
     async function deleteProject(project:ProjectModel){
         try{
+            setShowProjectsLoadingError(false)
+            setProjectsLoading(true)
             await ProjectsApi.deleteProject(project._id)
             setProjects(projects.filter(existingProject => existingProject._id !== project._id))
         }catch(error){
             console.error(error)
-            alert(error)
+            setShowProjectsLoadingError(true)
+        }
+        finally{
+            setProjectsLoading(false)
         }
     }
 
@@ -46,17 +71,18 @@ const ProjectsPageAdminView = () => {
         >
             Add New Project
         </Button>
-        <Row className="g-2">
-            {projects.map((project) => (
-                <Project 
-                    project={project} 
-                    key={project._id} 
-                    onProjectClicked={setProjectToEdit}
-                    onDeleteProjectClicked={deleteProject}
-                    isAdmin={true}
-                />
-            ))}
-        </Row>
+        {projectsLoading && <Spinner animation="border" variant="primary"/>}
+        {showProjectsLoadingError && <p>Something went wrong. Please refresh the page</p>}
+        {!projectsLoading && !showProjectsLoadingError && 
+        <>
+        {
+            projects.length > 0
+            ? projectsGrid
+            : <p>No projects found.</p>
+        }
+        </>
+        }
+        
         {showAddProjectDialog && 
             <AddEditProjectDialog 
                 onDismiss={() => setShowAddProjectDialog(false)}

@@ -19,6 +19,7 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
         github,
     } = project
 
+    //Parsed date into better looking date format
     const yearAndMonth = date.split('-', 2)
     const year = yearAndMonth[0]
     const monthInt = parseInt(yearAndMonth[1]) 
@@ -26,11 +27,11 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
         'July', 'August', 'September', 'October', 'November', 'December']
     const monthString = months[monthInt-1]
     
-
     return (<>
     <Card 
         className={`${styles.projectCard} ${className}`}
-        onClick={() => onProjectClicked(project)}>
+        onClick={() => onProjectClicked(project)}
+    >
         <Card.Body>
             {isAdmin && (
                 <div style={{textAlign: 'right'}}>
