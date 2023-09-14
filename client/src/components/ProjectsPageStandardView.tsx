@@ -23,10 +23,16 @@ const ProjectsPageStandardView = () => {
     return (
     <>
         <Container className="Projects">
-        <h1 style={{ color: "lightblue" }}>Projects</h1>
+        <h1 style={{ color: "lightblue", marginTop: "10px" }}>Projects</h1>
         <Row className="g-2">
             {projects.map((project) => (
-            <Project project={project} key={project._id} />
+            <Project 
+                project={project} 
+                key={project._id} 
+                onProjectClicked={()=>{}}
+                onDeleteProjectClicked={()=>{}}
+                isAdmin={false}
+                />
             ))}
         </Row>
         </Container>

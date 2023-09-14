@@ -5,18 +5,33 @@ import { ProjectInput } from "../network/project_api"
 import * as ProjectApi from '../network/project_api'
 
 
-interface AddProjectDialogProps{
+interface AddEditProjectDialogProps{
+    projectToEdit?: Project,
     onDismiss: () => void,
     onProjectSubmitted: (project: Project) => void,
 }
 
-const AddProjectDialog = ({onDismiss, onProjectSubmitted}: AddProjectDialogProps) => {
+const AddEditProjectDialog = ({projectToEdit, onDismiss, onProjectSubmitted}: AddEditProjectDialogProps) => {
 
-    const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<ProjectInput>()
+    const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<ProjectInput>({
+        defaultValues: {
+            title: projectToEdit?.title || "",
+            date: projectToEdit?.date || "",
+            description: projectToEdit?.description || "",
+            github: projectToEdit?.github || "",
+        }
+    })
 
     async function onSubmit(input: ProjectInput){
         try{
-            const projectResponse = await ProjectApi.createProject(input)
+            let projectResponse: Project
+            if(projectToEdit){
+                projectResponse = await ProjectApi.updateProject(projectToEdit._id, input)
+            }
+            else{
+                projectResponse = await ProjectApi.createProject(input)
+            }
+            
             onProjectSubmitted(projectResponse)
         }catch(error){
             console.log(error)
@@ -28,12 +43,12 @@ const AddProjectDialog = ({onDismiss, onProjectSubmitted}: AddProjectDialogProps
     <Modal show onHide={onDismiss}>
         <Modal.Header closeButton>
             <Modal.Title>
-                Add Project
+                {projectToEdit ? "Edit project" : "Add project"}
             </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-            <Form id="addProjectForm" onSubmit={handleSubmit(onSubmit)}>
+            <Form id="addEditProjectForm" onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
                     <Form.Control
@@ -85,13 +100,13 @@ const AddProjectDialog = ({onDismiss, onProjectSubmitted}: AddProjectDialogProps
         <Modal.Footer>
             <Button
             type="submit"
-            form="addProjectForm"
+            form="addEditProjectForm"
             disabled={isSubmitting}
             >
-                Add Project
+                Submit
             </Button>
         </Modal.Footer>
     </Modal>)
 }
 
-export default AddProjectDialog
+export default AddEditProjectDialog

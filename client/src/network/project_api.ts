@@ -24,3 +24,17 @@ export async function createProject(project: ProjectInput): Promise<Project>{
     return response.json()
 }
 
+export async function updateProject(projectId: string, project: ProjectInput): Promise<Project>{
+    const response = await fetchData(`${API_URL}/projects/edit/${projectId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(project)
+    })
+    return response.json()
+}
+
+export async function deleteProject(projectId: string){
+    await fetchData(`${API_URL}/projects/edit/${projectId}/delete`, {method: "DELETE"})
+}
