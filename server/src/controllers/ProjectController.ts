@@ -7,8 +7,7 @@ export async function createProject(req: Request, res: Response){
     
     const newProj = new Project({
         title: req.body.title,
-        month: req.body.month,
-        year: req.body.year,
+        date: req.body.date,
         description: req.body.description,
         github: req.body.github,
     });

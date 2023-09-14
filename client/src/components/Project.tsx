@@ -9,8 +9,7 @@ interface ProjectProps {
 const Project = ({project} : ProjectProps) => {
     const {
         title,
-        month,
-        year,
+        date,
         description,
         github,
     } = project
@@ -20,7 +19,7 @@ const Project = ({project} : ProjectProps) => {
         <Card.Body>
             <Card.Title>
                 <div style={{float: 'left'}}>{title}</div>
-                <div style={{textAlign: 'right'}}>Created {month} {year}</div>
+                <div style={{textAlign: 'right'}}>Created {date}</div>
                 </Card.Title>
             <Card.Text className={styles.cardText}>Description: <br/>{description}</Card.Text>
             {github === ''

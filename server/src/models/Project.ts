@@ -11,8 +11,7 @@ const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
     title: String,
-    month: String,
-    year: String,
+    date: String,
     description: String,
     github: String,
 })

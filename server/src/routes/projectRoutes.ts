@@ -4,7 +4,7 @@ import { requiresAuth } from "../middleware/auth"
 const app = express()
 
 app.get('/projects', getProjects)
-app.post('/projects/edit', createProject)
-app.delete('/projects/edit/:projectId', deleteProject)
+app.post('/projects/edit/create', createProject)
+app.delete('/projects/edit/:projectId/delete', deleteProject)
 
 export default app;
