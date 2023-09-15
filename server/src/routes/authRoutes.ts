@@ -3,9 +3,9 @@ import { createAccount, login, getAuthenticatedUser, logout } from '../controlle
 const app = express()
 
 app.get('/user', getAuthenticatedUser)
-app.post('/create', createAccount)
-app.post('/login', login)
-app.post('/logout', logout)
+app.post('/user/create', createAccount)
+app.post('/user/login', login)
+app.post('/user/logout', logout)
 
 
 export default app

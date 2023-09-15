@@ -5,6 +5,8 @@ import { Container, Row, Button, Spinner } from "react-bootstrap";
 import stylesUtils from '../styles/utils.module.css'
 import * as ProjectsApi from "../network/project_api";
 import AddEditProjectDialog from "./AddEditProjectDialog";
+import CreateAccountModal from "./CreateAccountModal";
+import LoginModal from "./LoginModal";
 
 const ProjectsPageAdminView = () => {
     const [projects, setProjects] = useState<ProjectModel[]>([]);
@@ -99,6 +101,20 @@ const ProjectsPageAdminView = () => {
                     setProjectToEdit(null)
                 }}
             />
+        }
+        {false &&
+            <CreateAccountModal
+            onDismiss={()=>{}}
+            onSignUpSuccessful={()=>{}}
+            />
+
+        }
+        {true &&
+            <LoginModal
+            onDismiss={()=>{}}
+            onLoginSuccessful={()=>{}}
+            />
+
         }
         </Container>
     </>
