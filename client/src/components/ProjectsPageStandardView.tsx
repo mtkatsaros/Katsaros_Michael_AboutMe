@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Project as ProjectModel } from "../models/project";
 import Project from "./Project";
-import { Container, Row, Spinner } from "react-bootstrap";
+import { Row, Spinner } from "react-bootstrap";
 import * as ProjectsApi from "../network/project_api";
 
 const ProjectsPageStandardView = () => {
@@ -42,7 +42,6 @@ const ProjectsPageStandardView = () => {
 
     return (
     <>
-        <Container className="Projects">
         {projectsLoading && <Spinner animation="border" variant="primary"/>}
         {showProjectsLoadingError && <p>Something went wrong. Please refresh the page</p>}
         {!projectsLoading && !showProjectsLoadingError && 
@@ -54,7 +53,6 @@ const ProjectsPageStandardView = () => {
         }
         </>
         }
-        </Container>
     </>
     );
 }
