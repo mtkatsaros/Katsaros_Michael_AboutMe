@@ -35,9 +35,9 @@ app.use(session({
 }))
 app.use(express.urlencoded({extended: false}))
 
-app.use(projApp)
-app.use(reviewApp)
-app.use(authApp)
+app.use("/projects", projApp)
+app.use("/reviews", reviewApp)
+app.use("/user", authApp)
 
 app.get('/', (req:Request, res:Response)=>{
     res.send('Hello there!')

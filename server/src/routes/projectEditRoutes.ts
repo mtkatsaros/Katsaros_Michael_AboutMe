@@ -1,10 +1,9 @@
 import express from "express"
 import { getProjects, createProject, deleteProject, updateProject } from "../controllers/ProjectController"
-import editApp from './projectEditRoutes'
-import { requiresAuth } from "../middleware/auth"
 const app = express()
 
-app.use('/edit', editApp)
-app.get('/', getProjects)
+app.post('/create', createProject)
+app.delete('/:projectId/delete', deleteProject)
+app.patch('/:projectId', updateProject)
 
 export default app;

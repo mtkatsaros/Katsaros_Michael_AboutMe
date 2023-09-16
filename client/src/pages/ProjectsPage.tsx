@@ -1,10 +1,25 @@
 import { Container } from "react-bootstrap"
 import ProjectsPageAdminView from "../components/ProjectsPageAdminView"
+import { User } from "../models/user"
+import ProjectsPageStandardView from "../components/ProjectsPageStandardView"
 
-const ProjectsPage = () => {
+interface ProjectsPageProps{
+    loggedInUser: User | null,
+}
+
+const ProjectsPage = ({loggedInUser}: ProjectsPageProps) => {
     return (
         <Container>
-            <ProjectsPageAdminView/>
+            {loggedInUser
+             ?  <>
+                    {loggedInUser?.admin === 'true'
+                    ? <ProjectsPageAdminView/> 
+                    : <ProjectsPageStandardView/>}
+                </>
+            
+             : <ProjectsPageStandardView/>
+            }
+            
         </Container>
     )
 }

@@ -43,7 +43,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<ProjectsPage/>}
+              element={<ProjectsPage loggedInUser={loggedInUser}/>}
             />
           </Routes>
         </Container>

@@ -6,14 +6,9 @@ import User from "../models/User";
 import bcrypt from 'bcrypt'
 
 export async function getAuthenticatedUser(req:Request, res:Response, next: NextFunction){
-    const authenticatedUserId = req.session.userId
     try{
-        if(!authenticatedUserId){
-            throw createHttpError(401, "User not authenticated")
-        }
-
-        const user = await User.findById(authenticatedUserId).select("+email").exec()
-        res.json(user)
+        const user = await User.findById(req.session.userId).select("+email").exec()
+        res.status(200).json(user)
     }catch(error){
         next(error)
     }
@@ -40,6 +35,7 @@ export async function createAccount(req:Request, res:Response, next:NextFunction
             username: username,
             email: email,
             password: passwordHashed,
+            admin: "false",
         })
 
         req.session.userId = newUser._id

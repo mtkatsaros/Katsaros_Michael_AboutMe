@@ -1,9 +1,11 @@
 import express from "express";
-import { createReview, getReviews } from "../controllers/ReviewController";
+import { getReviews } from "../controllers/ReviewController";
+import { requiresAuth } from "../middleware/auth";
+import editApp from './reviewEditRoutes'
 const app = express()
 
-app.get('/reviews', getReviews)
-app.post('/reviews/write', createReview)
+app.use('/edit', editApp)
+app.get('/', getReviews)
 
 
 export default app
