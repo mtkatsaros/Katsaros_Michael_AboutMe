@@ -16,17 +16,22 @@ import MongoStore from 'connect-mongo'
 
 
 app.use(cors({
-    origin: '*',
+    origin: 'http://localhost:5173',
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization"
 }))
 app.use(express.json())
 
 app.use(session({
     secret: env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
         maxAge: 60 * 60 * 1000,
-        httpOnly: false,
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
     },
     rolling: true,
     store: MongoStore.create({
