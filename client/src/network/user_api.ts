@@ -2,7 +2,7 @@ import { User } from "../models/user";
 import { API_URL, fetchData } from "./fetch_api";
 
 export async function getLoggedInUser():Promise<User>{
-    const response = await fetchData(`${API_URL}/user`, {method: 'GET'})
+    const response = await fetchData(`${API_URL}/user`, {method: 'GET', credentials: 'include'})
     return response.json()
 }
 
@@ -41,5 +41,5 @@ export async function login(credentials: LogInCredentials): Promise<User>{
 }
 
 export async function logout(){
-    await fetchData(`${API_URL}/user/logout`, {method: 'POST'})
+    await fetchData(`${API_URL}/user/logout`, {method: 'POST', credentials: 'include'})
 }
