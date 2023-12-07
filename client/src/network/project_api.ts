@@ -19,7 +19,8 @@ export async function createProject(project: ProjectInput): Promise<Project>{
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(project)
+        body: JSON.stringify(project), 
+        credentials: 'include'
     })
     return response.json()
 }
@@ -30,11 +31,13 @@ export async function updateProject(projectId: string, project: ProjectInput): P
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(project)
+        body: JSON.stringify(project), 
+        credentials: 'include'
     })
     return response.json()
 }
 
 export async function deleteProject(projectId: string){
-    await fetchData(`${API_URL}/projects/edit/${projectId}/delete`, {method: "DELETE"})
+    await fetchData(`${API_URL}/projects/edit/${projectId}/delete`, {method: "DELETE", 
+    credentials: 'include'})
 }

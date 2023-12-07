@@ -2,17 +2,31 @@ import {NextFunction, Request, Response} from 'express'
 import createHttpError from 'http-errors'
 import Project from '../models/Project'
 import mongoose from 'mongoose';
+import { assertIsDefined } from '../utils/assertIsDefined';
 
-export async function createProject(req: Request, res: Response){
+export async function createProject(req: Request, res: Response, next: NextFunction){
+    const authenticatedUserId = req.session.userId
     
-    const newProj = new Project({
-        title: req.body.title,
-        date: req.body.date,
-        description: req.body.description,
-        github: req.body.github,
-    });
-    const createdProj = await newProj.save()
-    res.json(createdProj)
+    const title = req.body.title
+    const date = req.body.date
+    const description = req.body.description
+    const github = req.body.github
+    
+    try{
+        assertIsDefined(authenticatedUserId)
+
+        const newProj = new Project({
+            title: title,
+            date: date,
+            description: description,
+            github: github,
+        });
+        const createdProj = await newProj.save()
+        res.json(createdProj)    
+    }
+    catch(error){
+        next(error)
+    }
 
 }
 
@@ -22,43 +36,63 @@ export async function getProjects(req: Request, res:Response){
 }
 
 export async function updateProject(req:Request, res:Response, next: NextFunction){
-    const projectId = req.params.projectId
-    const title = req.body.title
-    const date = req.body.date
-    const description = req.body.description
-    const github = req.body.github
 
-
+    const authenticatedUserId = req.session.userId
+    
     try{
-        if(!mongoose.isValidObjectId(projectId)){
-            throw createHttpError(400, 'Invalid project id')
-        }
-        if(!title || !date || !description){
-            throw createHttpError(400, 'Must have title, date, and description')
-        }
+        const projectId = req.params.projectId
+        const title = req.body.title
+        const date = req.body.date
+        const description = req.body.description
+        const github = req.body.github
 
-        const project = await Project.findById(projectId)
 
-        if(!project){
-            throw createHttpError(404, 'Project not found')
-        }
+        try{
+            if(!mongoose.isValidObjectId(projectId)){
+                throw createHttpError(400, 'Invalid project id')
+            }
+            if(!title || !date || !description){
+                throw createHttpError(400, 'Must have title, date, and description')
+            }
 
-        project.title = title
-        project.date = date
-        project.description = description
-        project.github = github
+            const project = await Project.findById(projectId)
 
-        const updatedProject = await project.save()
+            if(!project){
+                throw createHttpError(404, 'Project not found')
+            }
 
-        res.status(200).json(updatedProject)
-    }catch(error){
+            project.title = title
+            project.date = date
+            project.description = description
+            project.github = github
+
+            const updatedProject = await project.save()
+
+            res.status(200).json(updatedProject)
+        }catch(error){
+            next(error)
+        }     
+    }
+    catch(error){
         next(error)
     }
+
+    
     
 }
 
-export async function deleteProject(req:Request, res:Response){
-    const projectId = req.params.projectId
-    const project = await Project.findByIdAndDelete(projectId)
-    res.json(project)
+export async function deleteProject(req:Request, res:Response, next: NextFunction){
+
+    const authenticatedUserId = req.session.userId
+    
+    try{
+        const projectId = req.params.projectId
+        const project = await Project.findByIdAndDelete(projectId)
+        res.json(project)     
+    }
+    catch(error){
+        next(error)
+    }
+
+    
 }
