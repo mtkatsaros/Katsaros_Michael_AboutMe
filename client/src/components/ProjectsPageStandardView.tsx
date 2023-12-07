@@ -42,6 +42,7 @@ const ProjectsPageStandardView = () => {
 
     return (
     <>
+        <h1 style={{ color: "lightblue", marginTop: "10px" }}>Projects</h1>
         {projectsLoading && <Spinner animation="border" variant="primary"/>}
         {showProjectsLoadingError && <p>Something went wrong. Please refresh the page</p>}
         {!projectsLoading && !showProjectsLoadingError && 

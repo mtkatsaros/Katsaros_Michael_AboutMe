@@ -18,7 +18,8 @@ export async function createAccount(credentials: SignUpCredentials): Promise<Use
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(credentials), 
+        credentials: 'include'
     })
     return response.json()
 }
