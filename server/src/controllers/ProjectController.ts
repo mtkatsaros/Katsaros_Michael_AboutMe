@@ -3,6 +3,9 @@ import createHttpError from 'http-errors'
 import Project from '../models/Project'
 import mongoose from 'mongoose';
 import { assertIsDefined } from '../utils/assertIsDefined';
+import User from "../models/User";
+
+
 
 export async function createProject(req: Request, res: Response, next: NextFunction){
     const authenticatedUserId = req.session.userId
@@ -14,6 +17,12 @@ export async function createProject(req: Request, res: Response, next: NextFunct
     
     try{
         assertIsDefined(authenticatedUserId)
+        const user = await User.findById(authenticatedUserId)
+        const isAdmin = user?.admin
+
+        if(isAdmin != "true"){
+            next(createHttpError(401, 'User not authorized'))
+        }
 
         const newProj = new Project({
             title: title,
@@ -38,6 +47,7 @@ export async function getProjects(req: Request, res:Response){
 export async function updateProject(req:Request, res:Response, next: NextFunction){
 
     const authenticatedUserId = req.session.userId
+
     
     try{
         const projectId = req.params.projectId
@@ -45,7 +55,14 @@ export async function updateProject(req:Request, res:Response, next: NextFunctio
         const date = req.body.date
         const description = req.body.description
         const github = req.body.github
+        
+        assertIsDefined(authenticatedUserId)
+        const user = await User.findById(authenticatedUserId)
+        const isAdmin = user?.admin
 
+        if(isAdmin != "true"){
+            next(createHttpError(401, 'User not authorized'))
+        }
 
         try{
             if(!mongoose.isValidObjectId(projectId)){
@@ -86,6 +103,14 @@ export async function deleteProject(req:Request, res:Response, next: NextFunctio
     const authenticatedUserId = req.session.userId
     
     try{
+        assertIsDefined(authenticatedUserId)
+        const user = await User.findById(authenticatedUserId)
+        const isAdmin = user?.admin
+
+        if(isAdmin != "true"){
+            next(createHttpError(401, 'User not authorized'))
+        }
+
         const projectId = req.params.projectId
         const project = await Project.findByIdAndDelete(projectId)
         res.json(project)     
