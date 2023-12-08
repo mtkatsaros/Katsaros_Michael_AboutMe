@@ -1,4 +1,4 @@
-import styles from '../styles/Project.module.css'
+import styles from '../styles/Card.module.css'
 import { Card } from "react-bootstrap"
 import { Project as ProjectModel } from "../models/project"
 import {MdDelete} from 'react-icons/md'
@@ -29,7 +29,7 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
     
     return (<>
     <Card 
-        className={`${styles.projectCard} ${className}`}
+        className={`${styles.card} ${className}`}
         onClick={() => onProjectClicked(project)}
     >
         <Card.Body>
