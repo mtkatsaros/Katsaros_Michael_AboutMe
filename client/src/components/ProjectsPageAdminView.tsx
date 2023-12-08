@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Project as ProjectModel } from "../models/project";
 import Project from "./Project";
 import { Row, Button, Spinner } from "react-bootstrap";
-import stylesUtils from "../styles/utils.module.css";
 import * as ProjectsApi from "../network/project_api";
 import AddEditProjectDialog from "./AddEditProjectDialog";
 
@@ -66,13 +65,15 @@ const ProjectsPageAdminView = () => {
 
   return (
     <>
-        <h1 style={{ color: "lightblue", marginTop: "10px" }}>Projects</h1>
         <Button
-          className={`mb-3 ${stylesUtils.blockCenter}`}
+          style={{float: "right", marginTop: "10px"}}
+          variant="light"
+          className="button"
           onClick={() => setShowAddProjectDialog(true)}
         >
           Add New Project
         </Button>
+        <h1 style={{ color: "lightblue"}}>Projects</h1>
         {projectsLoading && <Spinner animation="border" variant="primary" />}
         {showProjectsLoadingError && (
           <p>Something went wrong. Please refresh the page</p>

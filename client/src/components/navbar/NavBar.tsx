@@ -10,6 +10,8 @@ interface NavBarProps {
   onLogoutSuccessful: () => void;
 }
 
+const root = "http://localhost:5173"
+
 const NavBar = ({
   loggedInUser,
   onSignUpClicked,
@@ -17,9 +19,13 @@ const NavBar = ({
   onLogoutSuccessful,
 }: NavBarProps) => {
   return (
-    <Navbar bg="secondary" variant="dark" expand="sm" sticky="top">
+    <Navbar bg="dark" data-bs-theme="dark" expand="sm" sticky="top">
       <Container>
-        <Navbar.Brand>About Michael Katsaros</Navbar.Brand>
+        <Navbar.Brand style={{color: "lightblue"}}>About Michael Katsaros</Navbar.Brand>
+        <Nav>
+          <Nav.Link href={root}>Home</Nav.Link>
+          <Nav.Link href={`${root}/projects`}>Projects</Nav.Link>
+        </Nav>
         <Navbar.Toggle aria-controls="main-navbar"/>
         <Navbar.Collapse id="main-navbar">
             <Nav className="ms-auto">
