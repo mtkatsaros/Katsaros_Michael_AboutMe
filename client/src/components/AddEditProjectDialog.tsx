@@ -40,7 +40,7 @@ const AddEditProjectDialog = ({projectToEdit, onDismiss, onProjectSubmitted}: Ad
     }
        
     return (
-    <Modal show onHide={onDismiss}>
+    <Modal show onHide={onDismiss} dialogClassName="dark-modal">
         <Modal.Header closeButton>
             <Modal.Title>
                 {projectToEdit ? "Edit project" : "Add project"}
@@ -99,6 +99,8 @@ const AddEditProjectDialog = ({projectToEdit, onDismiss, onProjectSubmitted}: Ad
         </Modal.Body>
         <Modal.Footer>
             <Button
+            variant="light"
+            className="button"
             type="submit"
             form="addEditProjectForm"
             disabled={isSubmitting}

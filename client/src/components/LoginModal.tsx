@@ -25,7 +25,7 @@ const LoginModal = ({onDismiss, onLoginSuccessful}: LoginModalProps) => {
     }
 
     return (
-    <Modal show onHide={onDismiss}>
+    <Modal show onHide={onDismiss} dialogClassName="dark-modal">
         <Modal.Header closeButton>
             <Modal.Title>
                 Log in
@@ -59,7 +59,13 @@ const LoginModal = ({onDismiss, onLoginSuccessful}: LoginModalProps) => {
                     </Form.Control.Feedback>
                 </Form.Group>
 
-                <Button type='submit' disabled={isSubmitting}>Log in</Button>
+                <Button 
+                    variant="light"
+                    className="button" 
+                    type='submit' 
+                    disabled={isSubmitting}>
+                        Log in
+                </Button>
             </Form>
         </Modal.Body>
         

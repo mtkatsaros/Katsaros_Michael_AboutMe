@@ -21,7 +21,7 @@ const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalPr
         }
     }
     return (
-    <Modal show onHide={onDismiss}>
+    <Modal show onHide={onDismiss} dialogClassName="dark-modal">
         <Modal.Header closeButton>
             <Modal.Title>
                 Create Account
@@ -67,7 +67,13 @@ const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalPr
                     </Form.Control.Feedback>
                 </Form.Group>
 
-                <Button type='submit' disabled={isSubmitting}>Sign Up</Button>
+                <Button 
+                    variant="light"
+                    className="button" 
+                    type='submit' 
+                    disabled={isSubmitting}>
+                        Sign Up
+                </Button>
             </Form>
         </Modal.Body>
         
