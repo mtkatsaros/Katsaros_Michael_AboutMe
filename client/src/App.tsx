@@ -7,6 +7,7 @@ import { User } from "./models/user";
 import * as UserApi from './network/user_api'
 import CreateAccountModal from "./components/CreateAccountModal";
 import LoginModal from "./components/LoginModal";
+import AboutPage from "./pages/AboutPage";
 
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
           <Routes>
             <Route
               path="/"
+              element={<AboutPage/>}
+            />
+            <Route
+              path="/projects"
               element={<ProjectsPage loggedInUser={loggedInUser}/>}
             />
           </Routes>
