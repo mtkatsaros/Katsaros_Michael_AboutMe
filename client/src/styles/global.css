@@ -20,7 +20,7 @@ code{
 
 .nav{
     background-color: #121212;
-    border-bottom: 1px solid #444
+    border-bottom: 1px solid #555
 }
 
 .dark-modal .modal-content {
@@ -32,17 +32,22 @@ code{
     border-bottom: 1px solid #555;
 }
 
+.dark-modal .close{
+    color: #555;
+}
+
 .dark-modal .modal-footer {
-    border-top: 1px solid #444;
+    border-top: 1px solid #555;
 }
 
 .dark-modal .form-control {
     background-color: #343434; 
     color: #ffff;
     border-color: #555; 
+
+    
 }
 
-
-
-
-  
+.dark-modal .form-control::placeholder{
+    color: #777
+}

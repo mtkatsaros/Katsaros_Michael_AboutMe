@@ -24,7 +24,7 @@ const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalPr
     }
     return (
     <Modal show onHide={onDismiss} dialogClassName="dark-modal">
-        <Modal.Header closeButton>
+        <Modal.Header closeButton closeVariant='white'>
             <Modal.Title>
                 Create Account
             </Modal.Title>
