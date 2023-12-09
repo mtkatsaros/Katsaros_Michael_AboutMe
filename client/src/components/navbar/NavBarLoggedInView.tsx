@@ -12,6 +12,7 @@ const NavBarLoggedInView = ({user, onLogOutSuccessful}: NavBarLoggedInViewProps)
     async function logout(){
         try{
             await UserApi.logout()
+            localStorage.removeItem('loggedInUser')
             onLogOutSuccessful()
         }catch(error){
             alert(error)

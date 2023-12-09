@@ -17,6 +17,8 @@ const LoginModal = ({onDismiss, onLoginSuccessful}: LoginModalProps) => {
     async function onSubmit(credentials: LogInCredentials){
         try{
             const user = await UserApi.login(credentials)
+            const userString = JSON.stringify(user)
+            localStorage.setItem('loggedInUser', userString);
             onLoginSuccessful(user)
         }catch(error){
             alert(error)

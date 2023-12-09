@@ -17,16 +17,31 @@ function App() {
   const [showLoginModal, setShowLoginModal] = useState(false)
 
   useEffect(() => {
-    async function fetchLoggedInUser(){
-      try{
-        const user = await UserApi.getLoggedInUser()
-        setLoggedInUser(user)
-      }catch(error){
-        console.error(error)
+    const getUserFromLocalStorage = () => {
+      const storedUser = localStorage.getItem('loggedInUser');
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        setLoggedInUser(parsedUser);
       }
     }
-    fetchLoggedInUser()
-  }, [])
+
+    getUserFromLocalStorage()
+
+    if(!loggedInUser){
+      const fetchLoggedInUser = async () => {
+        try {
+          const user = await UserApi.getLoggedInUser();
+          setLoggedInUser(user);
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchLoggedInUser();
+    }
+
+
+  }, [loggedInUser])
 
   return (
     <BrowserRouter>
