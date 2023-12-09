@@ -14,6 +14,8 @@ const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalPr
     async function onSubmit(credentials: SignUpCredentials){
         try{
             const newUser = await UserApi.createAccount(credentials)
+            const userString = JSON.stringify(newUser)
+            localStorage.setItem('loggedInUser', userString);
             onSignUpSuccessful(newUser)
         }catch(error){
             alert(error)
