@@ -8,6 +8,7 @@ import * as UserApi from './network/user_api'
 import CreateAccountModal from "./components/CreateAccountModal";
 import LoginModal from "./components/LoginModal";
 import AboutPage from "./pages/AboutPage";
+import ReviewsPage from "./pages/ReviewsPage"
 
 
 function App() {
@@ -64,6 +65,10 @@ function App() {
             <Route
               path="/projects"
               element={<ProjectsPage loggedInUser={loggedInUser}/>}
+            />
+            <Route 
+              path="/reviews"
+              element={<ReviewsPage/>}
             />
           </Routes>
         </Container>

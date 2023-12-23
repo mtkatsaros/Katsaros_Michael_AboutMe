@@ -25,6 +25,7 @@ const NavBar = ({
         <Nav>
           <Nav.Link href={root}>Home</Nav.Link>
           <Nav.Link href={`${root}/projects`}>Projects</Nav.Link>
+          <Nav.Link href={`${root}/reviews`}>Reviews</Nav.Link>
         </Nav>
         <Navbar.Toggle aria-controls="main-navbar"/>
         <Navbar.Collapse id="main-navbar">
