@@ -31,14 +31,22 @@ export async function createAccount(req:Request, res:Response, next:NextFunction
         }
 
         const passwordHashed = await bcrypt.hash(passwordRaw, 10)
-        const newUser = await User.create({
+        const newUserNoId = await User.create({
             username: username,
             email: email,
             password: passwordHashed,
             admin: "false",
+            uid: "null",
         })
 
-        req.session.userId = newUser._id
+        //UID is added to reference with reviews
+        const newUser = await User.findByIdAndUpdate(
+            {_id: newUserNoId._id},
+            {$set: { uid: newUserNoId._id.toString() }},
+            {new: true}
+        )
+
+        req.session.userId = newUserNoId._id
 
         res.status(201).json(newUser)
     }catch(error){

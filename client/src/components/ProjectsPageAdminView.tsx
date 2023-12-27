@@ -27,7 +27,7 @@ const ProjectsPageAdminView = () => {
       } finally {
         setProjectsLoading(false);
       }
-    }
+    }      
     loadProjects();
   }, []);
 
