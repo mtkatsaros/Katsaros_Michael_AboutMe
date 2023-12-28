@@ -30,6 +30,7 @@ export async function createProject(req: Request, res: Response, next: NextFunct
             description: description,
             github: github,
         });
+        
         const createdProj = await newProj.save()
         res.json(createdProj)    
     }
