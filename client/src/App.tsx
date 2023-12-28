@@ -68,7 +68,7 @@ function App() {
             />
             <Route 
               path="/reviews"
-              element={<ReviewsPage/>}
+              element={<ReviewsPage loggedInUser={loggedInUser}/>}
             />
           </Routes>
         </Container>
