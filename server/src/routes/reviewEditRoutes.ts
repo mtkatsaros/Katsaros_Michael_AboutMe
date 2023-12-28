@@ -1,8 +1,8 @@
 import express from "express";
-import { createReview } from "../controllers/ReviewController";
+import { writeReview } from "../controllers/ReviewController";
 const app = express()
 
-app.post('/write', createReview)
+app.post('/write', writeReview)
 
 
 export default app

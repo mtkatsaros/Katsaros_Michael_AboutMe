@@ -4,7 +4,7 @@ import { requiresAuth } from "../middleware/auth";
 import editApp from './reviewEditRoutes'
 const app = express()
 
-app.use('/edit', editApp)
+app.use('/edit', requiresAuth, editApp)
 app.get('/', getReviews)
 
 

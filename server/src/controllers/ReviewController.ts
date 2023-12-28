@@ -8,7 +8,7 @@ export async function getReviews(req:Request, res:Response){
     res.json(reviews)
 }
 
-export async function createReview(req:Request, res:Response, next: NextFunction){
+export async function writeReview(req:Request, res:Response, next: NextFunction){
 
     const authenticatedUserId = req.session.userId
     

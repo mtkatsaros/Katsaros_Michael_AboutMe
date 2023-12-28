@@ -4,7 +4,7 @@ import editApp from './projectEditRoutes'
 import { requiresAuth } from "../middleware/auth"
 const app = express()
 
-app.use('/edit', editApp)
+app.use('/edit', requiresAuth, editApp)
 app.get('/', getProjects)
 
 export default app;
