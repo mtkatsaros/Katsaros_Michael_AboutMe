@@ -41,7 +41,7 @@ export async function createProject(req: Request, res: Response, next: NextFunct
 }
 
 export async function getProjects(req: Request, res:Response){
-    const projects = await Project.find()
+    const projects = await Project.find().sort({date: -1})
     res.json(projects)
 }
 
