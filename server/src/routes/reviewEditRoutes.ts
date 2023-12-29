@@ -1,8 +1,9 @@
 import express from "express";
-import { writeReview } from "../controllers/ReviewController";
+import { writeReview, deleteReview, updateReview } from "../controllers/ReviewController";
 const app = express()
 
 app.post('/write', writeReview)
-
+app.delete('/:reviewId/delete', deleteReview)
+app.patch('/:reviewId', updateReview)
 
 export default app

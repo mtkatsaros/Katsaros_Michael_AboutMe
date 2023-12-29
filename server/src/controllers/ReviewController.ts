@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import createHttpError from 'http-errors'
+import mongoose from 'mongoose';
 import Review from '../models/Review'
 import { assertIsDefined } from '../utils/assertIsDefined';
 import User from "../models/User";
@@ -31,4 +33,75 @@ export async function writeReview(req:Request, res:Response, next: NextFunction)
     }
 
     
+}
+
+export async function updateReview(req: Request, res: Response, next: NextFunction){
+    const authenticatedUserId = req.session.userId
+
+    
+    try{
+        const reviewId = req.params.reviewId
+        const reviewUser = req.body.user
+        const title = req.body.title
+        const description = req.body.description
+        const uid = req.body.uid
+        
+        assertIsDefined(authenticatedUserId)
+        const user = await User.findById(authenticatedUserId)
+        const isAdmin = user?.admin
+
+        if(isAdmin != "true"){
+            next(createHttpError(401, 'User not authorized'))
+        }
+
+        try{
+            if(!mongoose.isValidObjectId(reviewId)){
+                throw createHttpError(400, 'Invalid review id')
+            }
+            if(!title || !reviewUser || !description || !uid){
+                throw createHttpError(400, 'Must have user, title, uid, and description')
+            }
+
+            const review = await Review.findById(reviewId)
+
+            if(!review){
+                throw createHttpError(404, 'Review not found')
+            }
+
+            review.title = title
+            review.user = reviewUser
+            review.description = description
+            review.uid = uid
+
+            const updatedReview = await review.save()
+
+            res.status(200).json(updatedReview)
+        }catch(error){
+            next(error)
+        }     
+    }
+    catch(error){
+        next(error)
+    }
+}
+
+export async function deleteReview(req: Request, res: Response, next: NextFunction){
+    const authenticatedUserId = req.session.userId
+    
+    try{
+        assertIsDefined(authenticatedUserId)
+        const user = await User.findById(authenticatedUserId)
+        const isAdmin = user?.admin
+
+        if(isAdmin != "true"){
+            next(createHttpError(401, 'User not authorized'))
+        }
+
+        const reviewId = req.params.reviewId
+        const review = await Review.findByIdAndDelete(reviewId)
+        res.json(review)     
+    }
+    catch(error){
+        next(error)
+    } 
 }
