@@ -47,12 +47,12 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
 
             )}
             
-            <Card.Title>
+            <Card.Title style={{fontWeight: "bolder", fontSize: "20px"}}>
                 <div style={{float: 'left'}}>{title}</div>
                 <div style={{textAlign: 'right'}}>Created {monthString} {year}</div>
                 
             </Card.Title>
-            <Card.Text className={styles.cardText}>Description: <br/>{description}</Card.Text>
+            <Card.Text className={styles.cardText}>{description}</Card.Text>
             {github === ''
             ? (<></>)
             : <Card.Link href={"http://" + github}>{github}</Card.Link>}

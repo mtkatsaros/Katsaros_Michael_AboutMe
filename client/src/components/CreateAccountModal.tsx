@@ -32,10 +32,10 @@ const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalPr
         <Modal.Body>
             <Form id="addEditProjectForm" onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label>Display Name</Form.Label>
                     <Form.Control
                         type="text" 
-                        placeholder="Username"
+                        placeholder="ex: John Doe"
                         isInvalid={!!errors.username}
                         {...register('username', {required: "Required"})}
                     />

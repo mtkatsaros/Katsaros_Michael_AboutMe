@@ -45,7 +45,7 @@ const AddEditReviewDialog = ({loggedInUser, reviewToEdit, onDismiss, onReviewSub
     <Modal show onHide={onDismiss} dialogClassName="dark-modal">
         <Modal.Header closeButton closeVariant="white">
             <Modal.Title>
-                {reviewToEdit ? "Edit review" : "Add review"}
+                {reviewToEdit ? "Edit review" : "Write a review"}
             </Modal.Title>
         </Modal.Header>
 

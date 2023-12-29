@@ -39,7 +39,8 @@ const Review = ({review, onReviewClicked, onDeleteReviewClicked, className, isAd
             )}
             
             <Card.Title>
-                {user}: {title}              
+                <div style={{float: 'left', fontSize: "18px", fontWeight: "lighter"}}>{user}</div>
+                <div style={{fontSize: "20px", fontWeight: "bolder"}}><br/>{title}</div>             
             </Card.Title>
             <Card.Text className={styles.cardText}>{description}</Card.Text>
             
