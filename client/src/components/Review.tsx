@@ -5,7 +5,7 @@ import {MdDelete} from 'react-icons/md'
 
 interface ReviewProps {
     review: ReviewModel,
-    onReviewClicked: (review: ReviewModel) => void,
+    onReviewClicked?: (review: ReviewModel) => void,
     onDeleteReviewClicked: (review: ReviewModel)=> void,
     className?: string,
     isAdmin: boolean,
@@ -22,7 +22,7 @@ const Review = ({review, onReviewClicked, onDeleteReviewClicked, className, isAd
     return (<>
     <Card 
         className={`${styles.card} ${className}`}
-        onClick={() => onReviewClicked(review)}
+        onClick={() => onReviewClicked && onReviewClicked(review)}
     >
         <Card.Body>
             {(isAdmin || isAuthor) && (

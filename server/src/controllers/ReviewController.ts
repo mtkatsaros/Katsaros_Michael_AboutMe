@@ -48,11 +48,8 @@ export async function updateReview(req: Request, res: Response, next: NextFuncti
         
         assertIsDefined(authenticatedUserId)
         const user = await User.findById(authenticatedUserId)
-        const isAdmin = user?.admin
 
-        if(isAdmin != "true"){
-            next(createHttpError(401, 'User not authorized'))
-        }
+
 
         try{
             if(!mongoose.isValidObjectId(reviewId)){
@@ -67,6 +64,10 @@ export async function updateReview(req: Request, res: Response, next: NextFuncti
             if(!review){
                 throw createHttpError(404, 'Review not found')
             }
+
+            if(review.uid != user?.uid){
+                next(createHttpError(401, 'User not authorized'))
+            }            
 
             review.title = title
             review.user = reviewUser
@@ -91,15 +92,17 @@ export async function deleteReview(req: Request, res: Response, next: NextFuncti
     try{
         assertIsDefined(authenticatedUserId)
         const user = await User.findById(authenticatedUserId)
+
         const isAdmin = user?.admin
 
-        if(isAdmin != "true"){
+        const reviewId = req.params.reviewId
+        const review = await Review.findById(reviewId)
+        if(!(isAdmin === "true" || review?.uid === user?.uid)){
             next(createHttpError(401, 'User not authorized'))
         }
 
-        const reviewId = req.params.reviewId
-        const review = await Review.findByIdAndDelete(reviewId)
-        res.json(review)     
+        const deleted = await Review.findByIdAndDelete(reviewId)
+        res.json(deleted)     
     }
     catch(error){
         next(error)

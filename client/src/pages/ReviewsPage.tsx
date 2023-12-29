@@ -41,14 +41,17 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
     const reviewsGrid = (
       <Row className="g-2">
         {reviews.map((review) => (
+          
           <Review
             review={review}
             key={review._id}
-            onReviewClicked={setReviewToEdit}
+            onReviewClicked={(loggedInUser?.uid === review.uid) ? setReviewToEdit : undefined}
             onDeleteReviewClicked={deleteReview}
             isAdmin={loggedInUser?.admin === "true"}
             isAuthor={loggedInUser?.uid === review.uid}
           />
+
+          
         ))}
       </Row>
     );
