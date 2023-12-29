@@ -22,19 +22,21 @@ const NavBar = ({
     <Navbar className="nav" variant="dark" data-bs-theme="dark" expand="sm" sticky="top">
       <Container>
         <Navbar.Brand style={{color: "lightblue"}}>About Michael Katsaros</Navbar.Brand>
-        <Nav>
-          <Nav.Link href={root}>Home</Nav.Link>
-          <Nav.Link href={`${root}/projects`}>Projects</Nav.Link>
-          <Nav.Link href={`${root}/reviews`}>Reviews</Nav.Link>
-        </Nav>
+        
         <Navbar.Toggle aria-controls="main-navbar"/>
         <Navbar.Collapse id="main-navbar">
-            <Nav className="ms-auto">
-                {loggedInUser
-                ? <NavBarLoggedInView user = {loggedInUser} onLogOutSuccessful={onLogoutSuccessful}/>
-                : <NavBarLoggedOutView onLogInClicked={onLoginClicked} onSignUpClicked={onSignUpClicked}/>
-                }
-            </Nav>
+
+          <Nav>
+            <Nav.Link href={root}>Home</Nav.Link>
+            <Nav.Link href={`${root}/projects`}>Projects</Nav.Link>
+            <Nav.Link href={`${root}/reviews`}>Reviews</Nav.Link>
+          </Nav>
+          <Nav className="ms-auto">
+              {loggedInUser
+              ? <NavBarLoggedInView user = {loggedInUser} onLogOutSuccessful={onLogoutSuccessful}/>
+              : <NavBarLoggedOutView onLogInClicked={onLoginClicked} onSignUpClicked={onSignUpClicked}/>
+              }
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
