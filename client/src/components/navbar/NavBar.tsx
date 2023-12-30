@@ -2,6 +2,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { User } from "../../models/user";
 import NavBarLoggedInView from "./NavBarLoggedInView";
 import NavBarLoggedOutView from "./NavBarLoggedOutView";
+import mkIcon from "/MKIcon.svg"
 
 interface NavBarProps {
   loggedInUser: User | null;
@@ -21,7 +22,7 @@ const NavBar = ({
   return (
     <Navbar className="nav" variant="dark" data-bs-theme="dark" expand="sm" sticky="top">
       <Container>
-        <Navbar.Brand style={{color: "lightblue"}}>About Michael Katsaros</Navbar.Brand>
+        <Navbar.Brand style={{color: "lightblue"}}><img src={mkIcon} height="30" className="d-inline-block align-top"/> About Michael Katsaros</Navbar.Brand>
         
         <Navbar.Toggle aria-controls="main-navbar"/>
         <Navbar.Collapse id="main-navbar">
