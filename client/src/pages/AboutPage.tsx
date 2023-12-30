@@ -1,10 +1,15 @@
 import { Container } from "react-bootstrap"
+import mkIcon from "/MKIcon.svg"
+
 
 
 const AboutPage = () => {
     return (
         <Container>
-            <h1 style={{ color: "lightblue", marginTop: "10px" }}>Welcome!</h1>
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <img src={mkIcon} height="500" />
+            </div>
+            
         </Container>
     )
 }

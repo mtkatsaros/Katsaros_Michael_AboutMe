@@ -22,7 +22,7 @@ const NavBar = ({
   return (
     <Navbar className="nav" variant="dark" data-bs-theme="dark" expand="sm" sticky="top">
       <Container>
-        <Navbar.Brand style={{color: "lightblue"}}><img src={mkIcon} height="30" className="d-inline-block align-top"/> About Michael Katsaros</Navbar.Brand>
+        <Navbar.Brand style={{color: "lightblue"}}><img src={mkIcon} height="30" className="d-inline-block align-top"/> Michael Katsaros</Navbar.Brand>
         
         <Navbar.Toggle aria-controls="main-navbar"/>
         <Navbar.Collapse id="main-navbar">
