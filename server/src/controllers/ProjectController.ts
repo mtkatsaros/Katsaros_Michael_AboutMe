@@ -20,7 +20,7 @@ export async function createProject(req: Request, res: Response, next: NextFunct
         const user = await User.findById(authenticatedUserId)
         const isAdmin = user?.admin
 
-        if(isAdmin != "true"){
+        if(isAdmin !== "true"){
             next(createHttpError(401, 'User not authorized'))
         }
 
@@ -61,7 +61,7 @@ export async function updateProject(req:Request, res:Response, next: NextFunctio
         const user = await User.findById(authenticatedUserId)
         const isAdmin = user?.admin
 
-        if(isAdmin != "true"){
+        if(isAdmin !== "true"){
             next(createHttpError(401, 'User not authorized'))
         }
 
@@ -108,7 +108,7 @@ export async function deleteProject(req:Request, res:Response, next: NextFunctio
         const user = await User.findById(authenticatedUserId)
         const isAdmin = user?.admin
 
-        if(isAdmin != "true"){
+        if(isAdmin !== "true"){
             next(createHttpError(401, 'User not authorized'))
         }
 

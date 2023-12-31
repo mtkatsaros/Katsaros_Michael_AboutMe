@@ -1,0 +1,17 @@
+section{
+    display: grid;
+    place-items: center;
+    align-content: center;
+    min-height: 100vh;
+}
+
+.fade-in{
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.fade-in.appear{
+    opacity: 1;
+    transform: translateX(0);
+}

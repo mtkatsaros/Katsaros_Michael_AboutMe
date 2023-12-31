@@ -7,10 +7,10 @@ interface NavBarLoggedOutViewProps{
 
 const NavBarLoggedOutView = ({onSignUpClicked, onLogInClicked}: NavBarLoggedOutViewProps) => {
     return (
-        <>
-        <Button variant="light" style={{marginRight: "2px"}} className="button" onClick={onSignUpClicked}>Sign up</Button>
-        <Button variant="light" className="button" onClick={onLogInClicked}>Log in</Button>
-        </>
+        <div className="d-grid gap-2 d-md-block">
+        <Button variant="light" style={{marginRight: "4px"}} className="button" onClick={onSignUpClicked}>Sign up</Button>
+        <Button variant="light" style={{marginRight: "4px"}} className="button" onClick={onLogInClicked}>Log in</Button>
+        </div>
     )
 }
 
