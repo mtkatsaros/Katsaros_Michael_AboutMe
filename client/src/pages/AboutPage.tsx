@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react"
-import { Container } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap"
 import mkIcon from "/MKIcon.svg"
+import {BsLinkedin, BsGithub, BsEnvelope} from "react-icons/bs"
 import "../styles/homepage.css"
-
 
 
 const AboutPage = () => {
@@ -41,13 +41,34 @@ const AboutPage = () => {
     return (
         <Container>
             <section>
-                <h1 style={{display: "flex", justifyContent: "center"}}>
-                    <img src={mkIcon} className="img-fluid" height="500" />
-                </h1>
+                <Row>
+                    <img src={mkIcon} className="img-fluid" height="500" />    
+                </Row>
+                <Row>
+                    <Col>
+                        <a href="https://github.com/mtkatsaros?tab=repositories">
+                            <BsGithub className={'icon'} />
+                        </a>
+                    </Col>
+                    <Col>
+                        <a href="https://www.linkedin.com/in/michael-katsaros-2301251b6/">
+                            <BsLinkedin className={'icon'} />
+                        </a> 
+                    </Col>
+                    <Col>
+                        <BsEnvelope className={'icon'}/>
+                    </Col>
+                </Row>
+                            
+                
             </section>
 
             <section ref={e => sectionRefs.current[0] = e} className={`fade-in ${visibleSections.includes(0) && "appear"}`}>
-                <div style={{ color: "lightblue"}}>Hello there!</div>
+                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
+                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
+                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
+                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
+                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
             </section>
 
             <section ref={e => sectionRefs.current[1] = e} className={`fade-in ${visibleSections.includes(1) && "appear"}`}>

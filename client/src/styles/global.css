@@ -23,6 +23,11 @@ code{
     border-bottom: 1px solid #555
 }
 
+.icon{
+    color: lightblue;
+    font-size: xx-large;
+}
+
 .dark-modal .modal-content {
     background-color: #232323;
     color: lightblue;
