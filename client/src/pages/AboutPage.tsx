@@ -94,7 +94,10 @@ const AboutPage = () => {
                         </a> 
                     </Col>
                     <Col>
-                        <BsEnvelope className={'icon'}/>
+                        <a href="#contact">
+                            <BsEnvelope className={'icon'}/>
+                        </a>
+                        
                     </Col>
                 </Row>
                             
@@ -117,7 +120,7 @@ const AboutPage = () => {
                 <div style={{ color: "lightblue"}}>Hi there!</div>
             </section>
 
-            <section>
+            <section id="contact">
                 {isSubmitting 
                 ? <Spinner animation="border" style={{color: "lightblue"}}/>
                 :
