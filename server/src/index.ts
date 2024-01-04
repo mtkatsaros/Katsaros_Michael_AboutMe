@@ -10,6 +10,7 @@ import cors from 'cors'
 import projApp from './routes/projectRoutes'
 import reviewApp from './routes/reviewRoutes'
 import authApp from './routes/authRoutes'
+import contactApp from './routes/contactRoutes'
 import session from 'express-session'
 import env from './utils/validateEnv'
 import MongoStore from 'connect-mongo'
@@ -43,6 +44,7 @@ app.use(express.urlencoded({extended: false}))
 app.use("/projects", projApp)
 app.use("/reviews", reviewApp)
 app.use("/user", authApp)
+app.use("/contact", contactApp)
 
 app.get('/', (req:Request, res:Response)=>{
     res.send('Hello there!')
