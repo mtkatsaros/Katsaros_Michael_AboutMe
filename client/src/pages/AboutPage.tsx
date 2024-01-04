@@ -1,8 +1,10 @@
-import { useEffect, useState, useRef } from "react"
-import { Container, Row, Col } from "react-bootstrap"
+import React, { useEffect, useState, useRef } from "react"
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap"
 import mkIcon from "/MKIcon.svg"
 import {BsLinkedin, BsGithub, BsEnvelope} from "react-icons/bs"
 import "../styles/homepage.css"
+import * as ContactApi from "../network/contact_api";
+
 
 
 const AboutPage = () => {
@@ -36,7 +38,43 @@ const AboutPage = () => {
         return () => {
           window.removeEventListener('scroll', handleScroll)
         }
-      }, [])
+    }, [])
+
+    //contact form handling
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    })
+
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({...formData, [e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+
+        setIsSubmitting(true)
+        try{
+            const response = await ContactApi.sendMessage(formData)
+            if(response.success){
+                await ContactApi.confirmationMessage(formData)
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                })
+            }else{
+                console.error("The message failed to send. Please try again.")
+            }
+        }catch(error){
+            console.error("An error occurred when sending message. Please try again.")
+        }finally{
+            setIsSubmitting(false)
+        }
+    }
 
     return (
         <Container>
@@ -79,8 +117,60 @@ const AboutPage = () => {
                 <div style={{ color: "lightblue"}}>Hi there!</div>
             </section>
 
-            <section ref={e => sectionRefs.current[3] = e} className={`fade-in ${visibleSections.includes(3) && "appear"}`}>
-                <div style={{ color: "lightblue"}}>Howdy there!</div>
+            <section>
+                {isSubmitting 
+                ? <Spinner animation="border" style={{color: "lightblue"}}/>
+                :
+                <>
+                    <h1 style={{ color: "lightblue"}}>Contact Me!</h1>
+                    <Form onSubmit={handleSubmit} className="dark-modal">
+                        <Form.Group >
+                            <Form.Label style={{color: "lightblue"}}>Name</Form.Label>
+                            <Form.Control
+                                type="text" 
+                                placeholder="Enter your name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label style={{color: "lightblue"}}>Email</Form.Label>
+                            <Form.Control
+                                type="email" 
+                                placeholder="Enter your email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label style={{color: "lightblue"}}>Message</Form.Label>
+                            <Form.Control
+                                as="textarea"  
+                                rows={5}
+                                placeholder="Enter your message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+                        <Button
+                        variant="light"
+                        className="button"
+                        type="submit"
+                        style={{marginTop: "5px"}}
+                        >
+                            Submit
+                        </Button>
+                    </Form>
+                </>
+                }
             </section>
             
             

@@ -89,7 +89,7 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
             : <h5 style={{ color: "lightblue", marginTop: "10px" }}>Log in to write a review</h5>}
             </div>
             <h1 style={{ color: "lightblue", marginTop: "10px" }}>Reviews</h1>
-            {reviewsLoading && <Spinner animation="border" variant="primary" />}
+            {reviewsLoading && <Spinner animation="border" style={{color: "lightblue"}}/>}
             {showReviewsLoadingError && (
             <p>Something went wrong. Please refresh the page</p>
             )}
