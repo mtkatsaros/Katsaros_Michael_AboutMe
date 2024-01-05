@@ -49,7 +49,7 @@ const Project = ({project, onProjectClicked, onDeleteProjectClicked, className, 
             
             <Card.Title style={{fontWeight: "bolder", fontSize: "20px"}}>
                 <div style={{float: 'left'}}>{title}</div>
-                <div style={{textAlign: 'right'}}>Created {monthString} {year}</div>
+                <div style={{textAlign: 'right'}}>{monthString} {year}</div>
                 
             </Card.Title>
             <Card.Text className={styles.cardText}>{description}</Card.Text>

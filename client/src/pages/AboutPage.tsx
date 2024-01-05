@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap"
 import mkIcon from "/MKIcon.svg"
+import profile from "/KatsarosProfile.svg"
 import {BsLinkedin, BsGithub, BsEnvelope} from "react-icons/bs"
 import "../styles/homepage.css"
 import * as ContactApi from "../network/contact_api";
@@ -11,34 +12,46 @@ const AboutPage = () => {
     //transition animation handling
     const sectionRefs = useRef<Array<HTMLElement | null>>([])
     const [visibleSections, setVisibleSections] = useState<number[]>([])
-    
+    const [animationTriggered, setAnimationTriggered] = useState<boolean[]>([])
+
     useEffect(() => {
-        const handleScroll = () => {
-          const newVisibleSections: number[] = sectionRefs.current.reduce((acc: number[], sectionRef: HTMLElement | null, index: number) => {
-            if (sectionRef) {
-              const { top, bottom } = sectionRef.getBoundingClientRect()
-              const offset = 300 
-    
-              if (top >= -offset && bottom <= window.innerHeight + offset) {
-                if (!acc.includes(index)) {
-                  acc.push(index)
-                }
-              } else {
-                acc = acc.filter(item => item !== index)
-              }
+    const handleScroll = () => {
+        const newVisibleSections: number[] = sectionRefs.current.reduce((acc: number[], sectionRef: HTMLElement | null, index: number) => {
+        if (sectionRef) {
+            const { top, bottom } = sectionRef.getBoundingClientRect()
+            const offset = 100
+
+            if (top >= -offset && bottom <= window.innerHeight + offset) {
+            if (!acc.includes(index) && !animationTriggered[index]) {
+                acc.push(index)
+                setAnimationTriggered(prev => {
+                const updatedTriggered = [...prev]
+                updatedTriggered[index] = true
+                return updatedTriggered
+                })
+            } else if (acc.includes(index) && !animationTriggered[index]) {
+                setAnimationTriggered(prev => {
+                const updatedTriggered = [...prev]
+                updatedTriggered[index] = true
+                return updatedTriggered
+                })
             }
-            return acc
-          }, [])
-    
-          setVisibleSections(newVisibleSections)
-        };
-    
-        window.addEventListener('scroll', handleScroll)
-    
-        return () => {
-          window.removeEventListener('scroll', handleScroll)
+            } else {
+            acc = acc.filter(item => item !== index)
+            }
         }
-    }, [])
+        return acc
+        }, [])
+
+        setVisibleSections(newVisibleSections)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll)
+    }
+    }, [animationTriggered])
 
     //contact form handling
     const [formData, setFormData] = useState({
@@ -104,19 +117,23 @@ const AboutPage = () => {
                 
             </section>
 
-            <section ref={e => sectionRefs.current[0] = e} className={`fade-in ${visibleSections.includes(0) && "appear"}`}>
-                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
-                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
-                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
-                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
-                <h1 style={{ color: "lightblue"}}>Hello there!</h1>
+            <section id="aboutme" ref={e => sectionRefs.current[0] = e} className={`fade-in ${(visibleSections.includes(0) || animationTriggered[0]) && "appear"}`}>
+                <Row>
+                    <Col style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBlockEnd: '20px' }}>
+                        <h1 style={{ color: "lightblue"}}>About Me</h1>
+                    </Col>
+                    <Col><img src={profile} className="img-fluid" style={{ width: "300px" }} />  </Col>
+                </Row>
+                
+                <Row><h2 style={{ color: "#dddd", fontWeight: "light"}}>hello my name is michael wassup what it is</h2></Row>  
+            
             </section>
 
-            <section ref={e => sectionRefs.current[1] = e} className={`fade-in ${visibleSections.includes(1) && "appear"}`}>
+            <section id="" ref={e => sectionRefs.current[1] = e} className={`fade-in ${(visibleSections.includes(1) || animationTriggered[1]) && "appear"}`}>
                 <div style={{ color: "lightblue"}}>Hey there!</div>
             </section>
 
-            <section ref={e => sectionRefs.current[2] = e} className={`fade-in ${visibleSections.includes(2) && "appear"}`}>
+            <section ref={e => sectionRefs.current[2] = e} className={`fade-in ${(visibleSections.includes(2) || animationTriggered[2]) && "appear"}`}>
                 <div style={{ color: "lightblue"}}>Hi there!</div>
             </section>
 
