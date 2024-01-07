@@ -122,10 +122,18 @@ const AboutPage = () => {
                     <Col style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBlockEnd: '20px' }}>
                         <h1 style={{ color: "lightblue"}}>About Me</h1>
                     </Col>
-                    <Col><img src={profile} className="img-fluid" style={{ width: "300px" }} />  </Col>
+                    <Col><img src={profile} className="img-fluid" style={{ width: "300px" }} /> </Col>
                 </Row>
                 
-                <Row><h2 style={{ color: "#dddd", fontWeight: "light"}}>hello my name is michael wassup what it is</h2></Row>  
+                <Row><p>
+                    Hello, my name is Michael Katsaros, a Computer Science student 
+                    at California State University, Long Beach. I am deeply passionate about 
+                    Backend Software Development and Systems Engineering, where I thrive in 
+                    crafting innovative solutions to complex challenges. Through hands-on 
+                    projects and a dedication to mastering these fields, I'm excited to leverage 
+                    technology to make a meaningful impact.
+                    </p>
+                </Row>  
             
             </section>
 
@@ -143,7 +151,7 @@ const AboutPage = () => {
                 :
                 <>
                     <h1 style={{ color: "lightblue"}}>Contact Me!</h1>
-                    <Form onSubmit={handleSubmit} className="dark-modal">
+                    <Form onSubmit={handleSubmit} className="dark-modal" style={{width: "250px"}}>
                         <Form.Group >
                             <Form.Label style={{color: "lightblue"}}>Name</Form.Label>
                             <Form.Control

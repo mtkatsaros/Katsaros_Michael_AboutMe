@@ -13,6 +13,12 @@ code{
         monospace;
 }
 
+p{
+    color: #ffff;
+    font-weight: lighter;
+    font-size: larger;
+}
+
 .button{
     background-color: lightblue;
     border: gray;
