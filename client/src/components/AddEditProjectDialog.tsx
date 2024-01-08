@@ -1,4 +1,5 @@
-import { Modal, Form, Button } from "react-bootstrap"
+import { useState } from "react"
+import { Modal, Form, Button, Alert } from "react-bootstrap"
 import { Project } from "../models/project"
 import { useForm } from "react-hook-form"
 import { ProjectInput } from "../network/project_api"
@@ -21,6 +22,7 @@ const AddEditProjectDialog = ({projectToEdit, onDismiss, onProjectSubmitted}: Ad
             github: projectToEdit?.github || "",
         }
     })
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
 
     async function onSubmit(input: ProjectInput){
         try{
@@ -35,12 +37,13 @@ const AddEditProjectDialog = ({projectToEdit, onDismiss, onProjectSubmitted}: Ad
             onProjectSubmitted(projectResponse)
         }catch(error){
             console.log(error)
-            alert(error)
+            setShowErrorAlert(true)
         }
     }
        
     return (
     <Modal show onHide={onDismiss} dialogClassName="dark-modal">
+        {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>An error ocurred. Please try again.</Alert>}
         <Modal.Header closeButton closeVariant="white">
             <Modal.Title>
                 {projectToEdit ? "Edit project" : "Add project"}
@@ -108,6 +111,7 @@ const AddEditProjectDialog = ({projectToEdit, onDismiss, onProjectSubmitted}: Ad
                 Submit
             </Button>
         </Modal.Footer>
+        
     </Modal>)
 }
 

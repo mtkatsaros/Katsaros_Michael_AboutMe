@@ -16,13 +16,16 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState<User|null>(null)
   const [showCreateAccountModal, setShowCreateAccountModal] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
 
   useEffect(() => {
+    setIsLoading(true)
     const getUserFromLocalStorage = () => {
-      const storedUser = localStorage.getItem('loggedInUser');
+      const storedUser = localStorage.getItem('loggedInUser')
       if (storedUser) {
-        const parsedUser = JSON.parse(storedUser);
-        setLoggedInUser(parsedUser);
+        const parsedUser = JSON.parse(storedUser)
+        setLoggedInUser(parsedUser)
       }
     }
 
@@ -32,23 +35,23 @@ function App() {
       const fetchLoggedInUser = async () => {
         try {
           const user = await UserApi.getLoggedInUser();
-          setLoggedInUser(user);
-            localStorage.setItem('loggedInUser', JSON.stringify(user));
+          setLoggedInUser(user)
+            localStorage.setItem('loggedInUser', JSON.stringify(user))
         } catch (error) {
-          console.error(error);
+          console.error(error)
         }
       }
-      fetchLoggedInUser();
+      fetchLoggedInUser()
     }
-
+    setIsLoading(false)
 
   }, [loggedInUser])
 
   return (
     <BrowserRouter>
     
-
-      <div>
+      {!isLoading &&
+        <div>
         <NavBar
           loggedInUser={loggedInUser}
           onLoginClicked={() => setShowLoginModal(true)}
@@ -92,8 +95,9 @@ function App() {
         )}
       
       </div>
+      }
     </BrowserRouter> 
-  );
+  )
 }
 
 export default App;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap"
+import { Container, Row, Col, Form, Button, Spinner, Alert } from "react-bootstrap"
 import mkIcon from "/MKIcon.svg"
 import profile from "/KatsarosProfile.svg"
 import {BsLinkedin, BsGithub, BsEnvelope} from "react-icons/bs"
@@ -61,6 +61,8 @@ const AboutPage = () => {
     })
 
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [showInfoAlert, setShowInfoAlert] = useState(false)
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -79,11 +81,14 @@ const AboutPage = () => {
                     email: '',
                     message: '',
                 })
+                setShowInfoAlert(true)
             }else{
+                setShowErrorAlert(true)
                 console.error("The message failed to send. Please try again.")
             }
         }catch(error){
-            console.error("An error occurred when sending message. Please try again.")
+            setShowErrorAlert(true)
+            console.error("The message failed to send. Please try again.")
         }finally{
             setIsSubmitting(false)
         }
@@ -204,11 +209,15 @@ const AboutPage = () => {
                         className="button"
                         type="submit"
                         style={{marginTop: "5px"}}
+                        disabled={isSubmitting}
                         >
                             Submit
                         </Button>
                     </Form>
-                </>
+                    {showInfoAlert && <Alert variant="success" onClose={() => setShowInfoAlert(false)} dismissible>Your message was sent successfully. Check your email for confirmation.</Alert>}
+                    {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error sending message. Please try again.</Alert>}
+
+                    </>
                 }
             </section>
             

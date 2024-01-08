@@ -1,8 +1,9 @@
+import { useState } from 'react'
 import {useForm} from 'react-hook-form'
 import { User } from '../models/user'
 import { SignUpCredentials } from '../network/user_api'
 import * as UserApi from '../network/user_api'
-import { Modal, Form, Button} from 'react-bootstrap'
+import { Modal, Form, Button, Alert} from 'react-bootstrap'
 
 interface CreateAccountModalProps{
     onDismiss: () => void,
@@ -11,6 +12,8 @@ interface CreateAccountModalProps{
 
 const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalProps) =>{
     const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<SignUpCredentials>()
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
+
     async function onSubmit(credentials: SignUpCredentials){
         try{
             const newUser = await UserApi.createAccount(credentials)
@@ -18,12 +21,13 @@ const CreateAccountModal = ({onDismiss, onSignUpSuccessful}:CreateAccountModalPr
             localStorage.setItem('loggedInUser', userString);
             onSignUpSuccessful(newUser)
         }catch(error){
-            alert(error)
+            setShowErrorAlert(true)
             console.error(error)
         }
     }
     return (
     <Modal show onHide={onDismiss} dialogClassName="dark-modal">
+        {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error creating account. Please try again.</Alert>}
         <Modal.Header closeButton closeVariant='white'>
             <Modal.Title>
                 Create Account

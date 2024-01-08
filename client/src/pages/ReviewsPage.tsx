@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Button , Row, Spinner } from "react-bootstrap"
+import { Container, Button , Row, Spinner, Alert } from "react-bootstrap"
 import { Review as ReviewModel } from "../models/review";
 import Review from "../components/Review";
 import { User } from "../models/user"
@@ -17,7 +17,8 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
     const [reviewsLoading, setReviewsLoading] = useState(true);
     const [showReviewsLoadingError, setShowReviewsLoadingError] =
       useState(false);
-  
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
+
     const [showAddReviewDialog, setShowAddReviewDialog] = useState(false);
     const [reviewToEdit, setReviewToEdit] = useState<ReviewModel | null>(null);
   
@@ -68,7 +69,7 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
         );
       } catch (error) {
         console.error(error);
-        setShowReviewsLoadingError(true);
+        setShowErrorAlert(true);
       } finally {
         setReviewsLoading(false);
       }
@@ -76,6 +77,7 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
   
     return (
         <Container>
+            {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error deleting endorsement. Please try again.</Alert>}
             <div style={{float: "right"}}>
             {loggedInUser
             ? <Button

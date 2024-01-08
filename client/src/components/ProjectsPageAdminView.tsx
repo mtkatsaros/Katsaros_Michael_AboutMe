@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Project as ProjectModel } from "../models/project";
 import Project from "./Project";
-import { Row, Button, Spinner } from "react-bootstrap";
+import { Row, Button, Spinner, Alert } from "react-bootstrap";
 import * as ProjectsApi from "../network/project_api";
 import AddEditProjectDialog from "./AddEditProjectDialog";
 
@@ -43,28 +43,32 @@ const ProjectsPageAdminView = () => {
         />
       ))}
     </Row>
-  );
+  )
+
+  const [showErrorAlert, setShowErrorAlert] = useState(false)
+
 
   async function deleteProject(project: ProjectModel) {
     try {
-      setShowProjectsLoadingError(false);
-      setProjectsLoading(true);
-      await ProjectsApi.deleteProject(project._id);
+      setShowProjectsLoadingError(false)
+      setProjectsLoading(true)
+      await ProjectsApi.deleteProject(project._id)
       setProjects(
         projects.filter(
           (existingProject) => existingProject._id !== project._id
         )
-      );
+      )
     } catch (error) {
-      console.error(error);
-      setShowProjectsLoadingError(true);
+      console.error(error)
+      setShowErrorAlert(true)
     } finally {
-      setProjectsLoading(false);
+      setProjectsLoading(false)
     }
   }
 
   return (
     <>
+        {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error deleting project. Please try again.</Alert>}
         <Button
           style={{float: "right", marginTop: "10px"}}
           variant="light"

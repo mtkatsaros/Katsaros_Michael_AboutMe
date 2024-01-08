@@ -1,8 +1,9 @@
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { User } from "../models/user"
 import { LogInCredentials } from "../network/user_api"
 import * as UserApi from '../network/user_api'
-import { Modal, Form, Button } from "react-bootstrap"
+import { Modal, Form, Button, Alert } from "react-bootstrap"
 
 
 interface LoginModalProps{
@@ -13,6 +14,7 @@ interface LoginModalProps{
 const LoginModal = ({onDismiss, onLoginSuccessful}: LoginModalProps) => {
 
     const {register, handleSubmit, formState: {errors, isSubmitting}} = useForm<LogInCredentials>()
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
 
     async function onSubmit(credentials: LogInCredentials){
         try{
@@ -21,13 +23,14 @@ const LoginModal = ({onDismiss, onLoginSuccessful}: LoginModalProps) => {
             localStorage.setItem('loggedInUser', userString);
             onLoginSuccessful(user)
         }catch(error){
-            alert(error)
+            setShowErrorAlert(true)
             console.error(error)
         }
     }
 
     return (
     <Modal show onHide={onDismiss} dialogClassName="dark-modal">
+        {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error logging in. Please try again.</Alert>}
         <Modal.Header closeButton closeVariant="white">
             <Modal.Title>
                 Log in

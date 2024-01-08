@@ -1,4 +1,5 @@
-import { Modal, Form, Button } from "react-bootstrap"
+import { useState } from "react"
+import { Modal, Form, Button, Alert } from "react-bootstrap"
 import { Review } from "../models/review"
 import { useForm } from "react-hook-form"
 import { ReviewInput } from "../network/review_api"
@@ -23,6 +24,7 @@ const AddEditReviewDialog = ({loggedInUser, reviewToEdit, onDismiss, onReviewSub
             uid: loggedInUser.uid,
         }
     })
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
 
     async function onSubmit(input: ReviewInput){
         try{
@@ -36,16 +38,17 @@ const AddEditReviewDialog = ({loggedInUser, reviewToEdit, onDismiss, onReviewSub
             
             onReviewSubmitted(reviewResponse)
         }catch(error){
+            setShowErrorAlert(true)
             console.log(error)
-            alert(error)
         }
     }
        
     return (
     <Modal show onHide={onDismiss} dialogClassName="dark-modal">
+        {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>An error ocurred. Please try again.</Alert>}
         <Modal.Header closeButton closeVariant="white">
             <Modal.Title>
-                {reviewToEdit ? "Edit review" : "Write a review"}
+                {reviewToEdit ? "Edit endorsement" : "Write an endorsement"}
             </Modal.Title>
         </Modal.Header>
 
