@@ -9,6 +9,8 @@ import CreateAccountModal from "./components/CreateAccountModal";
 import LoginModal from "./components/LoginModal";
 import AboutPage from "./pages/AboutPage";
 import ReviewsPage from "./pages/ReviewsPage"
+import NotFoundPage from "./pages/NotFoundPage"
+
 
 
 function App() {
@@ -51,7 +53,7 @@ function App() {
     <BrowserRouter>
     
       {!isLoading &&
-        <div>
+        <>
         <NavBar
           loggedInUser={loggedInUser}
           onLoginClicked={() => setShowLoginModal(true)}
@@ -73,6 +75,10 @@ function App() {
               path="/endorsements"
               element={<ReviewsPage loggedInUser={loggedInUser}/>}
             />
+            <Route
+              path="*"
+              element={<NotFoundPage/>}
+            />
           </Routes>
         </Container>
         {showCreateAccountModal && (
@@ -93,8 +99,12 @@ function App() {
             }} 
           />
         )}
-      
-      </div>
+        <footer>
+          <Container>
+            <p style={{fontSize: "smaller", marginTop: "5px"}}>&copy; {new Date().getFullYear()} Michael Katsaros Software</p>
+          </Container>
+        </footer>
+      </>
       }
     </BrowserRouter> 
   )

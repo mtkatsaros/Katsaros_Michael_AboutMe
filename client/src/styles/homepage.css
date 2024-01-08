@@ -2,7 +2,7 @@ section{
     display: grid;
     place-items: center;
     align-content: center;
-    min-height: 80vh;
+    min-height: 90vh;
 }
 
 .fade-in{
