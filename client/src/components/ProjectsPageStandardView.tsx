@@ -42,7 +42,7 @@ const ProjectsPageStandardView = () => {
 
     return (
     <>
-        <h1 style={{ color: "lightblue", marginTop: "10px" }}>Projects</h1>
+        <Row><h1 style={{ color: "lightblue", marginTop: "10px" }}>Projects</h1></Row>
         {projectsLoading && <Spinner animation="border" style={{color: "lightblue"}}/>}
         {showProjectsLoadingError && <p>Something went wrong. Please refresh the page</p>}
         {!projectsLoading && !showProjectsLoadingError && 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Project as ProjectModel } from "../models/project";
 import Project from "./Project";
-import { Row, Button, Spinner, Alert } from "react-bootstrap";
+import { Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import * as ProjectsApi from "../network/project_api";
 import AddEditProjectDialog from "./AddEditProjectDialog";
 
@@ -69,15 +69,20 @@ const ProjectsPageAdminView = () => {
   return (
     <>
         {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error deleting project. Please try again.</Alert>}
-        <Button
-          style={{float: "right", marginTop: "10px"}}
-          variant="light"
-          className="button"
-          onClick={() => setShowAddProjectDialog(true)}
-        >
-          Add New Project
-        </Button>
-        <h1 style={{ color: "lightblue", marginTop: "10px"}}>Projects</h1>
+        <Row>
+          <Col><h1 style={{ color: "lightblue", marginTop: "10px"}}>Projects</h1></Col>
+          <Col>
+            <Button
+              style={{marginTop: "10px", float: "right"}}
+              variant="light"
+              className="button"
+              onClick={() => setShowAddProjectDialog(true)}
+            >
+              Add New Project
+            </Button>
+          </Col>
+        </Row>
+
         {projectsLoading && <Spinner animation="border" style={{color: "lightblue"}} />}
         {showProjectsLoadingError && (
           <p>Something went wrong. Please refresh the page</p>

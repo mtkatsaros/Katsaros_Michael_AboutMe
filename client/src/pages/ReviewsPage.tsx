@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Button , Row, Spinner, Alert } from "react-bootstrap"
+import { Container, Button , Row, Col, Spinner, Alert } from "react-bootstrap"
 import { Review as ReviewModel } from "../models/review";
 import Review from "../components/Review";
 import { User } from "../models/user"
@@ -77,20 +77,25 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
   
     return (
         <Container>
-            {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error deleting endorsement. Please try again.</Alert>}
-            <div style={{float: "right"}}>
-            {loggedInUser
-            ? <Button
-                style={{float: "right", marginTop: "10px"}}
-                variant="light"
-                className="button"
-                onClick={() => setShowAddReviewDialog(true)}
-                >
-                Write an Endorsement
-            </Button>
-            : <div style={{ color: "lightblue", marginTop: "10px" , display: "flex"}}>Log in to write an endorsement</div>}
-            </div>
-            <h1 style={{ color: "lightblue", marginTop: "10px" }}>Endorsements</h1>
+            <Row>
+              <Col><h1 style={{ color: "lightblue", marginTop: "10px" }}>Endorsements</h1></Col>
+
+              <Col>
+              {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error deleting endorsement. Please try again.</Alert>}
+              <div style={{float: "right"}}>
+              {loggedInUser
+              ? <Button
+                  style={{marginTop: "10px"}}
+                  variant="light"
+                  className="button"
+                  onClick={() => setShowAddReviewDialog(true)}
+                  >
+                  Write an Endorsement
+              </Button>
+              : <div style={{ color: "lightblue", marginTop: "10px" , display: "flex"}}>Log in to write an endorsement</div>}
+              </div>
+              </Col>
+            </Row>
             {reviewsLoading && <Spinner animation="border" style={{color: "lightblue"}}/>}
             {showReviewsLoadingError && (
             <p>Something went wrong. Please refresh the page</p>
