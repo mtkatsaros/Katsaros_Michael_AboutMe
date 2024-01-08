@@ -42,7 +42,7 @@ app.use(session({
 app.use(express.urlencoded({extended: false}))
 
 app.use("/projects", projApp)
-app.use("/reviews", reviewApp)
+app.use("/endorsements", reviewApp)
 app.use("/user", authApp)
 app.use("/contact", contactApp)
 

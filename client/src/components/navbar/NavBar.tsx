@@ -30,7 +30,7 @@ const NavBar = ({
           <Nav>
             <Nav.Link href={root}>Home</Nav.Link>
             <Nav.Link href={`${root}/projects`}>Projects</Nav.Link>
-            <Nav.Link href={`${root}/reviews`}>Reviews</Nav.Link>
+            <Nav.Link href={`${root}/endorsements`}>Endorsements</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
               {loggedInUser

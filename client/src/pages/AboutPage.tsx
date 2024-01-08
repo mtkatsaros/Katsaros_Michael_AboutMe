@@ -125,12 +125,13 @@ const AboutPage = () => {
                     <Col><img src={profile} className="img-fluid" style={{ width: "300px" }} /> </Col>
                 </Row>
                 
-                <Row><p>
+                <Row>
+                    <p>
                     Hello, my name is Michael Katsaros, a Computer Science student 
                     at California State University, Long Beach. I am deeply passionate about 
                     Backend Software Development and Systems Engineering, where I thrive in 
                     crafting innovative solutions to complex challenges. Through hands-on 
-                    projects and a dedication to mastering these fields, I'm excited to leverage 
+                    projects and a dedication to mastering these fields, I'm excited to employ 
                     technology to make a meaningful impact.
                     </p>
                 </Row>  
@@ -138,11 +139,21 @@ const AboutPage = () => {
             </section>
 
             <section id="" ref={e => sectionRefs.current[1] = e} className={`fade-in ${(visibleSections.includes(1) || animationTriggered[1]) && "appear"}`}>
-                <div style={{ color: "lightblue"}}>Hey there!</div>
-            </section>
-
-            <section ref={e => sectionRefs.current[2] = e} className={`fade-in ${(visibleSections.includes(2) || animationTriggered[2]) && "appear"}`}>
-                <div style={{ color: "lightblue"}}>Hi there!</div>
+                <Row>
+                   <h1 style={{ color: "lightblue"}}>About This Website</h1>
+                </Row>
+                <Row>
+                    <p>
+                    This website was created using a MERN stack with Typescript. Here are some key functionalities:
+                    <ul>
+                        <li>User Authentication: Handles authenticated users using express sessions and MongoDB. </li>
+                        <li>Reviews: Enables users to write, edit, and delete their own reviews, showing their 
+                            display name, review title, and description </li>
+                        <li>Administrative review privileges: Allows administrators to delete other users' reviews, ensuring content moderation</li>
+                        <li>Projects: Grants administrators access to adding, editing, and deleting projects</li>
+                    </ul>
+                    </p>
+                </Row> 
             </section>
 
             <section id="contact">

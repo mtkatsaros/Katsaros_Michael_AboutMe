@@ -1,8 +1,10 @@
 import { Review } from "../models/review";
 import { API_URL, fetchData } from "./fetch_api";
 
+const route = `endorsements`
+
 export async function fetchReviews(): Promise<Review[]> {
-    const response = await fetchData(`${API_URL}/reviews`, {method: "GET", credentials: 'include'})
+    const response = await fetchData(`${API_URL}/${route}`, {method: "GET", credentials: 'include'})
     return response.json()
 }
 
@@ -14,7 +16,7 @@ export interface ReviewInput {
 }
 
 export async function writeReview(review: ReviewInput): Promise<Review>{
-    const response = await fetchData(`${API_URL}/reviews/edit/write`, {
+    const response = await fetchData(`${API_URL}/${route}/edit/write`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ export async function writeReview(review: ReviewInput): Promise<Review>{
 }
 
 export async function updateReview(reviewId: string, review: ReviewInput): Promise<Review>{
-    const response = await fetchData(`${API_URL}/reviews/edit/${reviewId}`, {
+    const response = await fetchData(`${API_URL}/${route}/edit/${reviewId}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -38,6 +40,6 @@ export async function updateReview(reviewId: string, review: ReviewInput): Promi
 }
 
 export async function deleteReview(reviewId: string){
-    await fetchData(`${API_URL}/reviews/edit/${reviewId}/delete`, {method: "DELETE", 
+    await fetchData(`${API_URL}/${route}/edit/${reviewId}/delete`, {method: "DELETE", 
     credentials: 'include'})
 }

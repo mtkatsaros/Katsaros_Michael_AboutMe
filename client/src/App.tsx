@@ -67,7 +67,7 @@ function App() {
               element={<ProjectsPage loggedInUser={loggedInUser}/>}
             />
             <Route 
-              path="/reviews"
+              path="/endorsements"
               element={<ReviewsPage loggedInUser={loggedInUser}/>}
             />
           </Routes>

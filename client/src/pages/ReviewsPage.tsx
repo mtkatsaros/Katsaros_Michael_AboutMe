@@ -84,17 +84,17 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
                 className="button"
                 onClick={() => setShowAddReviewDialog(true)}
                 >
-                Write a Review
+                Write an Endorsement
             </Button>
-            : <h5 style={{ color: "lightblue", marginTop: "10px" }}>Log in to write a review</h5>}
+            : <div style={{ color: "lightblue", marginTop: "10px" , display: "flex"}}>Log in to write an endorsement</div>}
             </div>
-            <h1 style={{ color: "lightblue", marginTop: "10px" }}>Reviews</h1>
+            <h1 style={{ color: "lightblue", marginTop: "10px" }}>Endorsements</h1>
             {reviewsLoading && <Spinner animation="border" style={{color: "lightblue"}}/>}
             {showReviewsLoadingError && (
             <p>Something went wrong. Please refresh the page</p>
             )}
             {!reviewsLoading && !showReviewsLoadingError && (
-            <>{reviews.length > 0 ? reviewsGrid : <p>No reviews found.</p>}</>
+            <>{reviews.length > 0 ? reviewsGrid : <p>No endorsements found.</p>}</>
             )}
 
             {showAddReviewDialog && loggedInUser && (
