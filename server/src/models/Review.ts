@@ -8,5 +8,5 @@ const ReviewSchema = new Schema({
     uid: String,
 })
 
-const Review = mongoose.model('Review', ReviewSchema)
+const Review = mongoose.model('Endorsement', ReviewSchema)
 export default Review

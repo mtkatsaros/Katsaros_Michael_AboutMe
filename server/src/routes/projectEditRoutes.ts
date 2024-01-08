@@ -1,5 +1,5 @@
 import express from "express"
-import { getProjects, createProject, deleteProject, updateProject } from "../controllers/ProjectController"
+import { createProject, deleteProject, updateProject } from "../controllers/ProjectController"
 const app = express()
 
 app.post('/create', createProject)
