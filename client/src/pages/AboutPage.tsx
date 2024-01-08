@@ -152,9 +152,9 @@ const AboutPage = () => {
                     This website was created using a MERN stack with Typescript. Here are some key functionalities:
                     <ul>
                         <li>User Authentication: Handles authenticated users using express sessions and MongoDB. </li>
-                        <li>Reviews: Enables users to write, edit, and delete their own reviews, showing their 
-                            display name, review title, and description </li>
-                        <li>Administrative review privileges: Allows administrators to delete other users' reviews, ensuring content moderation</li>
+                        <li>Endorsements: Enables users to write, edit, and delete their own endorsements, showing their 
+                            display name, endorsement title, and description </li>
+                        <li>Administrative endorsement privileges: Allows administrators to delete other users' endorsements, ensuring content moderation</li>
                         <li>Projects: Grants administrators access to adding, editing, and deleting projects</li>
                     </ul>
                     </p>
