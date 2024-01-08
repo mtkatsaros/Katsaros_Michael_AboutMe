@@ -20,7 +20,7 @@ const NavBar = ({
   onLogoutSuccessful,
 }: NavBarProps) => {
   return (
-    <Navbar className="nav" variant="dark" data-bs-theme="dark" expand="md" sticky="top">
+    <Navbar className="nav" variant="dark" data-bs-theme="dark" expand="lg" sticky="top">
       <Container>
         <Navbar.Brand style={{color: "lightblue"}}><img src={mkIcon} height="30" className="d-inline-block align-top"/> Michael Katsaros</Navbar.Brand>
         

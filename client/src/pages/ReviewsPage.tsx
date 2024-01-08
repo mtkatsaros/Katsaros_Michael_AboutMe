@@ -78,10 +78,10 @@ const ReviewsPage = ({loggedInUser}: ReviewsPageProps) => {
     return (
         <Container>
             <Row>
-              <Col><h1 style={{ color: "lightblue", marginTop: "10px" }}>Endorsements</h1></Col>
-
-              <Col>
               {showErrorAlert && <Alert variant="danger" onClose={() => setShowErrorAlert(false)} dismissible>Error deleting endorsement. Please try again.</Alert>}
+              
+              <Col><h1 style={{ color: "lightblue", marginTop: "10px" }}>Endorsements</h1></Col>
+              <Col>
               <div style={{float: "right"}}>
               {loggedInUser
               ? <Button
