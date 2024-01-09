@@ -11,7 +11,7 @@ interface NavBarProps {
   onLogoutSuccessful: () => void;
 }
 
-const root = "http://localhost:5173"
+const root = "https://mtkatsaros.com"
 
 const NavBar = ({
   loggedInUser,
