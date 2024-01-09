@@ -50,7 +50,7 @@ function App() {
   }, [loggedInUser])
 
   return (
-    <BrowserRouter basename="https://michaeltkatsaros.com">
+    <BrowserRouter>
     
       {!isLoading &&
         <>
