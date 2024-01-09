@@ -5,7 +5,7 @@
  */
 import { ConflictError, UnauthorizedError } from "../errors/http_errors"
 
-export const API_URL = import.meta.env.VITE_API_URL ??"http://localhost:50000"
+export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:50000"
 
 export async function fetchData(input: RequestInfo, init?: RequestInit){
     const response = await fetch(input, init)

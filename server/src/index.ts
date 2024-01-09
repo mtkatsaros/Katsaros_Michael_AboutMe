@@ -17,7 +17,7 @@ import MongoStore from 'connect-mongo'
 
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://michaeltkatsaros.com',
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type,Authorization"
