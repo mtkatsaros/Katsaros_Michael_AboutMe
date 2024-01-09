@@ -167,7 +167,7 @@ const AboutPage = () => {
                 :
                 <>
                     <h1 style={{ color: "lightblue"}}>Contact Me!</h1>
-                    <Form onSubmit={handleSubmit} className="dark-modal" style={{width: "250px"}}>
+                    <Form onSubmit={handleSubmit} className="dark-modal" style={{width: "250px", marginBottom: "5px"}}>
                         <Form.Group >
                             <Form.Label style={{color: "lightblue"}}>Name</Form.Label>
                             <Form.Control
