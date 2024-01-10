@@ -33,7 +33,6 @@ app.use(session({
         httpOnly: true,
         secure: true,
         sameSite: 'lax',
-        domain: '.michaeltkatsaros.com'
     },
     store: MongoStore.create({
         mongoUrl: env.MONGO_URL
