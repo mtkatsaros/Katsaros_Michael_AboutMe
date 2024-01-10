@@ -31,8 +31,9 @@ app.use(session({
     cookie: {
         maxAge: 60 * 60 * 1000,
         httpOnly: true,
-        secure: false,
-        sameSite: 'none'
+        secure: true,
+        sameSite: 'lax',
+        domain: 'michaeltkatsaros.com'
     },
     rolling: true,
     store: MongoStore.create({
