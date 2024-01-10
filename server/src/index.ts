@@ -26,16 +26,15 @@ app.use(express.json())
 
 app.use(session({
     secret: env.SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     cookie: {
         maxAge: 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
         sameSite: 'lax',
-        domain: 'michaeltkatsaros.com'
+        domain: '.michaeltkatsaros.com'
     },
-    rolling: true,
     store: MongoStore.create({
         mongoUrl: env.MONGO_URL
     }),
