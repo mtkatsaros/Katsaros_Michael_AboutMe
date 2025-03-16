@@ -25,3 +25,7 @@ export async function fetchData(input: RequestInfo, init?: RequestInit){
         throw Error(errorMessage)   
     }
 }
+
+export async function fetch404(){
+    await fetchData(`${API_URL}/serve404`, {method: 'GET', credentials: 'include'})
+}

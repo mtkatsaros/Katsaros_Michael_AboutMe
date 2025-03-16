@@ -45,6 +45,9 @@ app.use("/contact", contactApp)
 app.get('/', (req:Request, res:Response)=>{
     res.send('Hello there!')
 })
+app.get('/serve404', (req:Request, res:Response)=>{
+    res.status(404)
+})
 
 mongoose.connect(`${process.env.MONGO_URL}`).then(()=>{
     console.log(`listening on port ${port}`)
