@@ -46,7 +46,7 @@ app.get('/', (req:Request, res:Response)=>{
     res.send('Hello there!')
 })
 app.get('/serve404', (req:Request, res:Response)=>{
-    res.status(404)
+    res.status(404).send('Not Found')
 })
 
 mongoose.connect(`${process.env.MONGO_URL}`).then(()=>{
